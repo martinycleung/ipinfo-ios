@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "9D8D1D61-5BD3-42A2-98F8-D2C6AB5729F4",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:App_IPinfo.xcodeproj",
+      "identifier" : "A1000001229F000E",
+      "name" : "App_IPinfo"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:App_IPinfo.xcodeproj",
+        "identifier" : "A1000002229F000E",
+        "name" : "App_IPinfoTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:App_IPinfo.xcodeproj",
+        "identifier" : "A1000003229F000E",
+        "name" : "App_IPinfoUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
