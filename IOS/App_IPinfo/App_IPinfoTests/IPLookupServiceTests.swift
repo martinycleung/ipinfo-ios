@@ -325,7 +325,11 @@ final class IPLookupServiceTests: XCTestCase {
     // MARK: - My IP Tests
 
     func testLookupMyIPSuccess() async throws {
-        let responseJSON = """
+        let ipifyResponse = """
+        {"ip": "203.45.67.89"}
+        """
+
+        let ipapiResponse = """
         {
             "ip": "203.45.67.89",
             "city": "Sydney",
@@ -335,23 +339,90 @@ final class IPLookupServiceTests: XCTestCase {
         }
         """
 
+        var requestCount = 0
         MockURLProtocol.requestHandler = { request in
-            XCTAssertTrue(request.url?.absoluteString.hasSuffix("/json/") ?? false)
-            XCTAssertFalse(request.url?.absoluteString.contains("203.45.67.89") ?? true) // Should not contain IP in URL
-            let response = HTTPURLResponse(
-                url: request.url!,
-                statusCode: 200,
-                httpVersion: nil,
-                headerFields: nil
-            )!
-            return (response, responseJSON.data(using: .utf8)!)
+            requestCount += 1
+            let urlString = request.url?.absoluteString ?? ""
+
+            if urlString.contains("ipify.org") {
+                // First request: get IPv4 from ipify
+                let response = HTTPURLResponse(
+                    url: request.url!,
+                    statusCode: 200,
+                    httpVersion: nil,
+                    headerFields: nil
+                )!
+                return (response, ipifyResponse.data(using: .utf8)!)
+            } else {
+                // Second request: lookup details from ipapi.co
+                XCTAssertTrue(urlString.contains("203.45.67.89"), "Should lookup the IPv4 address")
+                let response = HTTPURLResponse(
+                    url: request.url!,
+                    statusCode: 200,
+                    httpVersion: nil,
+                    headerFields: nil
+                )!
+                return (response, ipapiResponse.data(using: .utf8)!)
+            }
         }
 
         let result = try await sut.lookupMyIP()
 
+        XCTAssertEqual(requestCount, 2, "Should make two requests: ipify then ipapi")
         XCTAssertEqual(result.ip, "203.45.67.89")
         XCTAssertEqual(result.city, "Sydney")
         XCTAssertEqual(result.countryName, "Australia")
+    }
+
+    func testLookupMyIPReturnsIPv4() async throws {
+        // This test verifies that lookupMyIP returns IPv4 address (not IPv6)
+        let ipifyResponse = """
+        {"ip": "1.2.3.4"}
+        """
+
+        let ipapiResponse = """
+        {"ip": "1.2.3.4", "city": "Test"}
+        """
+
+        MockURLProtocol.requestHandler = { request in
+            let urlString = request.url?.absoluteString ?? ""
+            if urlString.contains("ipify.org") {
+                let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+                return (response, ipifyResponse.data(using: .utf8)!)
+            } else {
+                let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+                return (response, ipapiResponse.data(using: .utf8)!)
+            }
+        }
+
+        let result = try await sut.lookupMyIP()
+
+        // Verify it's a valid IPv4 address
+        XCTAssertTrue(IPLookupService.isValidIPv4(result.ip ?? ""), "Should return IPv4 address")
+        XCTAssertFalse(IPLookupService.isValidIPv6(result.ip ?? ""), "Should not return IPv6 address")
+    }
+
+    func testLookupMyIPFailsWhenIpifyFails() async {
+        MockURLProtocol.requestHandler = { request in
+            let urlString = request.url?.absoluteString ?? ""
+            if urlString.contains("ipify.org") {
+                // ipify returns error
+                let response = HTTPURLResponse(url: request.url!, statusCode: 500, httpVersion: nil, headerFields: nil)!
+                return (response, Data())
+            } else {
+                XCTFail("Should not reach ipapi if ipify fails")
+                let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+                return (response, Data())
+            }
+        }
+
+        do {
+            _ = try await sut.lookupMyIP()
+            XCTFail("Expected error when ipify fails")
+        } catch {
+            // Expected error
+            XCTAssertNotNil(error)
+        }
     }
 
     // MARK: - Input Sanitization Tests

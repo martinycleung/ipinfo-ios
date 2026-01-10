@@ -76,7 +76,16 @@ final class HistoryManager {
         }
 
         do {
-            history = try JSONDecoder().decode([HistoryItem].self, from: data)
+            let loadedHistory = try JSONDecoder().decode([HistoryItem].self, from: data)
+
+            // Filter out items older than 24 hours to comply with ipapi.co terms
+            let twentyFourHoursAgo = Date().addingTimeInterval(-24 * 60 * 60)
+            history = loadedHistory.filter { $0.timestamp > twentyFourHoursAgo }
+
+            // If we removed any items, save the filtered history
+            if history.count != loadedHistory.count {
+                saveHistory()
+            }
         } catch {
             print("Failed to load history: \(error)")
         }

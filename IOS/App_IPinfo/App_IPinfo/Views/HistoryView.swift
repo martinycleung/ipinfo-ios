@@ -75,9 +75,15 @@ struct HistoryRow: View {
                 .frame(width: 40)
 
             VStack(alignment: .leading, spacing: 4) {
-                Text(item.ip)
+                Text(item.query)
                     .font(.system(.body, design: .monospaced))
                     .fontWeight(.medium)
+
+                if item.query != item.ip {
+                    Text(item.ip)
+                        .font(.caption)
+                        .foregroundStyle(.blue)
+                }
 
                 Text(item.location)
                     .font(.caption)

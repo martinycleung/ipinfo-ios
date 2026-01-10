@@ -38,7 +38,7 @@ struct ContentView: View {
             }
             .padding()
             .background(Color(.systemGroupedBackground))
-            .navigationTitle("IP Info")
+            .navigationTitle("Simple IP Info")
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -195,7 +195,7 @@ struct ContentView: View {
                 HStack(spacing: 8) {
                     ForEach(historyManager.history.prefix(5)) { item in
                         RecentChip(item: item) {
-                            searchText = item.ip
+                            searchText = item.query
                             performLookup()
                         }
                     }
@@ -295,7 +295,7 @@ struct ContentView: View {
                     searchText = result.ip ?? ""
                     isLoading = false
                     showResults = true
-                    historyManager.addToHistory(query: "My IP", ipInfo: result)
+                    historyManager.addToHistory(query: result.ip ?? "My IP", ipInfo: result)
                     UIAccessibility.post(notification: .announcement, argument: "Your IP address is \(result.ip ?? "unknown")")
                 }
             } catch {
@@ -320,7 +320,7 @@ struct RecentChip: View {
             HStack(spacing: 6) {
                 Image(systemName: "globe")
                     .font(.caption2)
-                Text(item.ip)
+                Text(item.query)
                     .font(.caption)
                     .fontWeight(.medium)
             }

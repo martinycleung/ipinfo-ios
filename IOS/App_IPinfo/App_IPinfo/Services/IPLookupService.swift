@@ -125,11 +125,51 @@ actor IPLookupService {
     }
 
     func lookupMyIP() async throws -> IPInfo {
-        guard let url = URL(string: "\(baseURL)/json/") else {
+        // First, get IPv4 address from ipify (which guarantees IPv4)
+        let ipv4Address = try await getMyIPv4Address()
+
+        // Then look up the details using ipapi.co
+        guard let url = buildURL(for: ipv4Address) else {
             throw IPLookupError.invalidURL
         }
 
         return try await performRequest(url: url)
+    }
+
+    private func getMyIPv4Address() async throws -> String {
+        guard let url = URL(string: "https://api.ipify.org?format=json") else {
+            throw IPLookupError.invalidURL
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.timeoutInterval = requestTimeout
+
+        let data: Data
+        let response: URLResponse
+
+        do {
+            (data, response) = try await session.data(for: request)
+        } catch {
+            throw IPLookupError.networkError(error)
+        }
+
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200...299).contains(httpResponse.statusCode) else {
+            throw IPLookupError.networkError(URLError(.badServerResponse))
+        }
+
+        // Parse the simple JSON response: {"ip":"x.x.x.x"}
+        struct IPResponse: Decodable {
+            let ip: String
+        }
+
+        do {
+            let ipResponse = try JSONDecoder().decode(IPResponse.self, from: data)
+            return ipResponse.ip
+        } catch {
+            throw IPLookupError.decodingError(error)
+        }
     }
 
     // MARK: - Private Methods

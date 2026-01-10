@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-IP Info is an iOS app (iOS 17+) built with SwiftUI that allows users to lookup IP address or domain name information including owner, ASN, and geographic location with MapKit visualization.
+Simple IP Info is an iOS app (iOS 17+) built with SwiftUI that allows users to lookup IP address or domain name information including owner, ASN, and geographic location with MapKit visualization.
 
 ## Build Commands
 

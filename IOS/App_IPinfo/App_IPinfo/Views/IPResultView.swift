@@ -76,7 +76,7 @@ struct IPResultView: View {
         if let lat = ipInfo.latitude, let lon = ipInfo.longitude {
             text += "Coordinates: \(String(format: "%.4f, %.4f", lat, lon))\n"
         }
-        text += "\nLooked up with IP Info app"
+        text += "\nLooked up with Simple IP Info app"
         return text
     }
 

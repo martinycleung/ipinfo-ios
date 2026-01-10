@@ -238,7 +238,7 @@ struct IPInfoWidget: Widget {
         StaticConfiguration(kind: kind, provider: IPInfoProvider()) { entry in
             IPInfoWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("IP Info")
+        .configurationDisplayName("Simple IP Info")
         .description("View your current IP address and location")
         .supportedFamilies([.systemSmall, .systemMedium, .accessoryCircular, .accessoryRectangular])
     }
