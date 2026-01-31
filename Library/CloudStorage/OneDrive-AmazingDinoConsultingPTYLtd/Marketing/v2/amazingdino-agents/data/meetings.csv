@@ -1,0 +1,4 @@
+meeting_date,meeting_time,company_name,contact_name,contact_title,meeting_type,status,briefing_prepared,meeting_notes,outcome,next_steps,proposal_needed
+2026-01-31,14:00,Medibank Private,Sarah Chen,Head of Digital Transformation,discovery_call,scheduled,no,,,Create briefing document,
+2026-02-03,10:00,Suncorp Group,Michael Torres,CTO,discovery_call,scheduled,no,,,Create briefing document,
+2026-02-15,11:00,Cochlear Limited,Robert Zhang,Chief Digital Officer,follow_up,tentative,no,,,"Confirm meeting closer to date",

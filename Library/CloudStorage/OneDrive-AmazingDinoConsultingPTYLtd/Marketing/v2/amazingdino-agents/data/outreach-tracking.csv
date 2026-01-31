@@ -1,0 +1,10 @@
+date,company_name,contact_name,channel,touch_type,sequence_stage,message_sent,response_status,response_date,response_notes,next_action
+2026-01-27,Medibank Private,Sarah Chen,email,initial_outreach,day_0,yes,no_response,,,"Follow up day_3"
+2026-01-27,AGL Energy,Lisa Thompson,email,initial_outreach,day_0,yes,no_response,,,"Follow up day_3"
+2026-01-23,Suncorp Group,Michael Torres,email,initial_outreach,day_0,yes,no_response,,,"Follow up day_7"
+2026-01-23,Suncorp Group,Michael Torres,email,follow_up_1,day_3,yes,no_response,,,"Follow up day_7"
+2026-01-16,Bendigo Bank,Amanda Wilson,email,initial_outreach,day_0,yes,opened,,Opened email twice,"Follow up day_14"
+2026-01-16,Bendigo Bank,Amanda Wilson,email,follow_up_1,day_3,yes,no_response,,,"Follow up day_14"
+2026-01-16,Bendigo Bank,Amanda Wilson,linkedin,connection_request,day_3,yes,accepted,2026-01-18,"Connected on LinkedIn","Follow up day_14"
+2026-01-16,Bendigo Bank,Amanda Wilson,email,follow_up_2,day_7,yes,no_response,,,"Follow up day_14"
+2026-01-09,Cochlear Limited,Robert Zhang,email,initial_outreach,day_0,yes,replied,2026-01-12,"Interested but busy Q1 - revisit Q2","Nurture sequence"

@@ -1,0 +1,22 @@
+I've completed checking the meetings data. Here's the summary:
+
+## Meetings Tomorrow (2026-01-31) - Summary
+
+**Total meetings scheduled:** 0
+
+The `data/meetings.csv` file exists but contains only headers with no meeting data. No briefings need to be prepared for tomorrow.
+
+### Status
+- **Meetings found:** None
+- **Briefings needed:** None
+- **Actions required:** None
+
+### Next Steps
+
+To use the meeting prep system, add meetings to `data/meetings.csv` in this format:
+```
+meeting_date,meeting_time,company_name,contact_name,contact_title,meeting_type,status,briefing_prepared,meeting_notes,outcome,next_steps,proposal_needed
+2026-01-31,14:00,Company Name,Contact Name,Title,discovery,scheduled,no,,,,
+```
+
+Would you like me to write the summary file to `outputs/daily/2026-01-30/meetings-tomorrow.md`? (You'll need to approve the write permission.)

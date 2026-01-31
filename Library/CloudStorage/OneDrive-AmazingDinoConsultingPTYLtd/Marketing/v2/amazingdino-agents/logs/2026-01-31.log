@@ -1,0 +1,39 @@
+[19:15:00] ======================================
+[19:15:00] Daily Lead Generation Workflow Started
+[19:15:00] ======================================
+[19:15:00] Starting: Contact Validation
+[19:15:00] Running Python validation...
+[19:15:07] ======================================
+[19:15:07] Daily Lead Generation Workflow Started
+[19:15:07] ======================================
+[19:15:07] Starting: Outreach Generation
+[19:15:59] ======================================
+[19:15:59] Daily Lead Generation Workflow Started
+[19:15:59] ======================================
+[19:15:59] Starting: Contact Validation
+[19:15:59] Running Python validation...
+[19:16:00] 
+[19:16:00] ========================================
+[19:16:00] ERROR: Contact validation FAILED!
+[19:16:00] ========================================
+[19:16:00] 
+[19:16:00] !!! OUTREACH BLOCKED - Fix contacts before sending !!!
+[19:16:00] 
+[19:16:00] Common issues:
+[19:16:00]   - Fake/guessed email addresses (NEEDS_VERIFICATION)
+[19:16:00]   - Auto-generated LinkedIn URLs
+[19:16:00]   - Placeholder signal URLs (NEEDS_REAL_URL)
+[19:16:00] 
+[19:16:00] To fix:
+[19:16:00]   1. Review: outputs/validation-report-2026-01-31.md
+[19:16:00]   2. Update contacts with REAL verified information
+[19:16:00]   3. Replace placeholder URLs with actual URLs
+[19:16:00]   4. Re-run: ./workflows/daily-workflow.sh validate
+[19:16:00] 
+[19:16:00] Created .validation-failed flag - outreach blocked
+[19:16:07] ======================================
+[19:16:07] Daily Lead Generation Workflow Started
+[19:16:07] ======================================
+[19:16:07] Starting: Outreach Generation
+[19:16:07] ERROR: Cannot run outreach - validation failed!
+[19:16:07] Run './daily-workflow.sh validate' first and fix issues

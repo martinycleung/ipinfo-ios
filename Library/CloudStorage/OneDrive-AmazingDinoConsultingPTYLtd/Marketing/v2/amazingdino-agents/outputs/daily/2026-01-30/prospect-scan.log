@@ -1,0 +1,31 @@
+I need permissions to complete this task. Here's the summary:
+
+## Daily Signal Scan - 2026-01-30
+
+**Permissions needed:**
+- **WebSearch** - to scan job boards and news sites
+- **File write** - to save report to `outputs/daily/2026-01-30/prospect-signals.md`
+
+### Current Database
+Your `prospects.csv` has 1 test entry only:
+| Company | Industry | Score |
+|---------|----------|-------|
+| Test Company | Technology | 3.5 |
+
+---
+
+### Manual Searches to Execute
+
+**Job Boards:**
+- SEEK: `AI implementation` OR `process automation` - Australia
+- LinkedIn Jobs: `automation manager` - Australia
+
+**News:**
+- afr.com: AI automation strategy
+- itnews.com.au: digital transformation
+
+---
+
+**Would you like to:**
+1. Grant WebSearch + Write permissions so I can automate this?
+2. Run searches manually and paste results for me to process?

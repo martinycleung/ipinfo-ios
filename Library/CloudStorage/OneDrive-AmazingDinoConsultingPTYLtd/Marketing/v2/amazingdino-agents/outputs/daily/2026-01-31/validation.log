@@ -1,0 +1,62 @@
+==================================================
+Contact Validation System
+==================================================
+Mode: Quick (offline)
+
+Validating prospects...
+  [INVALID] Medibank Private - Sarah Chen
+      - Invalid email format
+      - LinkedIn URL appears fake: MISSING_LINKEDIN
+  [INVALID] Suncorp Group - Michael Torres
+      - Invalid email format
+      - LinkedIn URL appears fake: MISSING_LINKEDIN
+  [INVALID] RACV - Jennifer Liu
+      - Invalid email format
+      - LinkedIn URL appears fake: MISSING_LINKEDIN
+  [INVALID] Telstra Health - David Park
+      - Invalid email format
+      - LinkedIn URL appears fake: MISSING_LINKEDIN
+  [INVALID] Bendigo Bank - Amanda Wilson
+      - Invalid email format
+      - LinkedIn URL appears fake: MISSING_LINKEDIN
+  [INVALID] Cochlear Limited - Robert Zhang
+      - Invalid email format
+      - LinkedIn URL appears fake: MISSING_LINKEDIN
+  [INVALID] AGL Energy - Lisa Thompson
+      - Invalid email format
+      - LinkedIn URL appears fake: MISSING_LINKEDIN
+  [INVALID] Transurban - Kevin O'Brien
+      - Invalid email format
+      - LinkedIn URL appears fake: MISSING_LINKEDIN
+
+Validating signal URLs...
+  [INVALID] Medibank Private: NEEDS_REAL_URL
+      - Placeholder URL detected: MISSING_URL
+  [INVALID] Suncorp Group: NEEDS_REAL_URL
+      - Placeholder URL detected: MISSING_URL
+  [INVALID] AGL Energy: NEEDS_REAL_URL
+      - Placeholder URL detected: MISSING_URL
+  [INVALID] Telstra Health: NEEDS_REAL_URL
+      - Placeholder URL detected: MISSING_URL
+  [INVALID] Transurban: NEEDS_REAL_URL
+      - Placeholder URL detected: MISSING_URL
+
+==================================================
+Validation Summary
+==================================================
+
+Prospects: 8 total
+  - Valid:      0
+  - Suspicious: 0
+  - Invalid:    8
+
+Signal URLs: 5 total
+  - Valid:   0
+  - Invalid: 5
+
+Report saved to: /Users/yucheungleung/Library/CloudStorage/OneDrive-AmazingDinoConsultingPTYLtd/Marketing/v2/amazingdino-agents/outputs/validation-report-2026-01-31.md
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+VALIDATION FAILED: Invalid contacts detected!
+Do NOT proceed with outreach until issues are fixed.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
