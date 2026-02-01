@@ -104,9 +104,14 @@ Oraculum/
    - Chart-level Nayin assessment
 
 10. **LuckPillarCalculator** - 10-year luck cycle (大运) calculation:
-    - Direction based on year stem polarity and gender
+    - Direction based on year stem polarity and gender:
+      - Yang year + Male = Forward (顺行)
+      - Yang year + Female = Backward (逆行)
+      - Yin year + Male = Backward (逆行)
+      - Yin year + Female = Forward (顺行)
     - Luck pillar favorability analysis
     - Current luck pillar identification
+    - **Gender changes trigger complete recalculation**
 
 11. **UsefulGodCalculator** - Enhanced Useful God (用神) analysis:
     - Three traditional methods: Strength Balance, Pattern, Climate
@@ -290,6 +295,7 @@ xcrun devicectl device install app \
 - `MLValidationEngineTests` - ML feature extraction and predictions (16 tests)
 - `FourPillarsRecalculationTests` - Validates that ALL four pillars and 地支 recalculate when date changes (7 tests)
 - `DateChangeRecalculationTests` - Tests day pillar 60 Jia-Zi cycle and score consistency (18 tests)
+- `LuckPillarTests` - Tests gender-based Luck Pillar (大运) direction calculation (8 tests)
 
 ### Key Test Cases
 - Year Breaker penalty for constructive activities
@@ -314,6 +320,8 @@ xcrun devicectl device install app \
 - **StrategicCalendarView** - Heatmap calendar with date selection
   - Clears cache and reloads when user's birth date changes
 - **ProfileView** - User Ba Zi chart display and settings
+  - Shows Luck Pillars (大运) with gender-based direction
+  - Recalculates when gender or birth date changes
 - **ProfileEditView** - Edit user profile information
   - **Live BaZi Preview** - Shows all four pillars updating in real-time as user changes date/time
   - Recalculates chart on birthDate and birthTimezone changes
@@ -416,7 +424,8 @@ private func localizedWarning(_ warning: String) -> String {
 - **NEW:** BoardroomViewModel uses personalized insights for recommendations
 - **NEW:** Warning localization supports both "warning." and "score." prefixes
 - **NEW:** LLM infrastructure prepared (iOS 18+ ready)
-- **NEW:** 135 unit tests passing (including BaZi recalculation validation)
+- **NEW:** 143 unit tests passing (including BaZi recalculation and Luck Pillar tests)
+- **NEW:** Luck Pillars (大运) display with gender-based direction recalculation
 
 ### v1.2 (ML Validation Engine)
 - ML Validation Engine with CoreML support
