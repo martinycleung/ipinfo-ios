@@ -49,6 +49,13 @@ Oraculum/
 │       ├── zh-Hans.lproj/         # Simplified Chinese
 │       └── zh-Hant.lproj/         # Traditional Chinese
 ├── OraculumTests/                 # Unit tests
+├── ml_validation/                 # ML validation system (Python)
+│   ├── scripts/
+│   │   ├── bazi_calculator.py     # Python BaZi feature extraction
+│   │   ├── cbdb_pipeline.py       # CBDB historical data pipeline
+│   │   ├── train_models.py        # XGBoost, Transformer, Bayesian Network training
+│   │   └── export_coreml.py       # CoreML model export
+│   └── requirements.txt
 └── Package.swift                  # Swift Package for core library
 ```
 
@@ -135,6 +142,34 @@ The scoring system uses context-aware "utility" scoring rather than general luck
 - Three Harmonies/Meetings provide bonuses
 - Clashes and punishments apply penalties
 - Void positions reduce element effectiveness
+
+### ML Validation Engine (v1.2)
+
+The system includes ML-enhanced validation using historical data from CBDB (China Biographical Database) with 650K+ records:
+
+12. **MLValidationEngine** - CoreML-ready ML predictions:
+    - Feature extraction from BaZi charts (BaZiMLFeatures)
+    - Rule-based predictions (fallback) with fortune level estimation
+    - Score enhancement blending traditional + ML predictions
+    - Three Harmony, Six Combination, clash detection
+
+**Python ML Pipeline** (`ml_validation/scripts/`):
+- **bazi_calculator.py**: Python BaZi feature extraction matching Swift
+- **cbdb_pipeline.py**: Downloads and processes CBDB SQLite database
+- **train_models.py**: Trains XGBoost (career/longevity), Transformer (patterns), Bayesian Network (timing)
+- **export_coreml.py**: Exports models to CoreML format
+
+**ML Features Extracted:**
+- Pillar stems, branches, elements (12 features)
+- Day Master element and strength
+- Element counts (wood, fire, earth, metal, water)
+- Combination flags (Three Harmony, Six Combination)
+- Clash count
+
+**Validation Metrics:**
+- Event prediction: ±2 years accuracy
+- Binary classification: F1 > 0.7 target
+- Ranking correlation: Spearman ρ > 0.5
 
 ### Qualitative Rating System (v1.1)
 Traditional Chinese ratings alongside numeric scores:
@@ -246,6 +281,7 @@ xcrun devicectl device install app \
 - `SolarTermCalculatorTests` - Solar term detection
 - `DayOfficerCalculatorTests` - Day officer calculations
 - `ScoringSystemTests` - Scoring algorithm verification
+- `MLValidationEngineTests` - ML feature extraction and predictions (16 tests)
 
 ### Key Test Cases
 - Year Breaker penalty for constructive activities
@@ -290,7 +326,7 @@ xcrun devicectl device install app \
 
 ## Version History
 
-### Current Features (v1.1)
+### Current Features (v1.2)
 - Complete Ba Zi chart calculation
 - Advanced utility-based scoring algorithm
 - Date selection for 30+ activity types
@@ -298,12 +334,23 @@ xcrun devicectl device install app \
 - Multi-language support (EN, ZH-Hans, ZH-Hant)
 - Professional insight messaging
 - Privacy-first local data storage
-- **NEW:** Branch Combinations (三合, 三会, 六合, 冲刑破害)
-- **NEW:** Void (空亡) position analysis
-- **NEW:** Nayin (纳音) Five Elements system
-- **NEW:** Luck Pillars (大运) 10-year cycle calculation
-- **NEW:** UsefulGod validation (透干, 有根, 被冲, 空亡, 有护)
-- **NEW:** Qualitative rating system (大吉 to 大凶)
+- Branch Combinations (三合, 三会, 六合, 冲刑破害)
+- Void (空亡) position analysis
+- Nayin (纳音) Five Elements system
+- Luck Pillars (大运) 10-year cycle calculation
+- UsefulGod validation (透干, 有根, 被冲, 空亡, 有护)
+- Qualitative rating system (大吉 to 大凶)
+- **NEW:** ML Validation Engine with CoreML support
+- **NEW:** Python ML pipeline for CBDB historical data training
+- **NEW:** Feature extraction: Three Harmony, Six Combination, clash detection
+- **NEW:** 110 unit tests passing
+
+### v1.1 (Advanced BaZi Analysis)
+- Branch Combinations and Void analysis
+- Nayin Five Elements system
+- Luck Pillars calculation
+- UsefulGod validation enhancements
+- Qualitative rating system
 
 ### v1.0 (Initial Release)
 - Core Ba Zi calculation engine
