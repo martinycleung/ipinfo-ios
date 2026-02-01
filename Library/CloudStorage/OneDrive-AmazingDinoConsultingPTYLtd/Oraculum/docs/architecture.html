@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oraculum - Architecture & Calculation Flow</title>
+    <style>
+        :root {
+            --wood: #22c55e;
+            --fire: #ef4444;
+            --earth: #a16207;
+            --metal: #6b7280;
+            --water: #3b82f6;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent: #3b82f6;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--accent);
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid var(--border);
+        }
+
+        .flow-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .flow-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .flow-box {
+            background: var(--card);
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            text-align: center;
+            min-width: 140px;
+        }
+
+        .flow-box.input {
+            border-color: var(--wood);
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .flow-box.process {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .flow-box.output {
+            border-color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .flow-box.decision {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+            transform: rotate(0deg);
+        }
+
+        .flow-box small {
+            display: block;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        .arrow {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+        }
+
+        .arrow-down {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .pillar {
+            background: var(--card);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .pillar-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .pillar-char {
+            font-size: 1.5rem;
+            margin: 0.25rem 0;
+        }
+
+        .pillar.highlight {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .element-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin: 0.25rem;
+        }
+
+        .element-wood { background: rgba(34, 197, 94, 0.2); color: var(--wood); }
+        .element-fire { background: rgba(239, 68, 68, 0.2); color: var(--fire); }
+        .element-earth { background: rgba(161, 98, 7, 0.2); color: var(--earth); }
+        .element-metal { background: rgba(107, 114, 128, 0.2); color: var(--metal); }
+        .element-water { background: rgba(59, 130, 246, 0.2); color: var(--water); }
+
+        .formula {
+            background: #0d1117;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 0.5rem 0;
+        }
+
+        .formula .comment {
+            color: #6a737d;
+        }
+
+        .formula .keyword {
+            color: #ff7b72;
+        }
+
+        .formula .string {
+            color: #a5d6ff;
+        }
+
+        .formula .number {
+            color: #79c0ff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: rgba(59, 130, 246, 0.1);
+            font-weight: 600;
+        }
+
+        .gender-table {
+            margin: 1rem 0;
+        }
+
+        .gender-table td:first-child {
+            font-weight: 600;
+        }
+
+        .direction-forward {
+            color: var(--wood);
+        }
+
+        .direction-backward {
+            color: var(--fire);
+        }
+
+        .scoring-level {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            background: var(--card);
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            border-left: 4px solid;
+        }
+
+        .scoring-level.critical { border-left-color: #ef4444; }
+        .scoring-level.warning { border-left-color: #f59e0b; }
+        .scoring-level.normal { border-left-color: var(--accent); }
+        .scoring-level.bonus { border-left-color: var(--wood); }
+
+        .level-num {
+            font-size: 1.5rem;
+            font-weight: bold;
+            width: 2rem;
+            text-align: center;
+        }
+
+        .level-content {
+            flex: 1;
+        }
+
+        .level-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .level-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .architecture-diagram {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .arch-layer {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 1rem;
+            border: 1px solid var(--border);
+        }
+
+        .arch-layer h4 {
+            text-align: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .arch-item {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 6px;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .luck-pillar-demo {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+        }
+
+        .luck-card {
+            min-width: 60px;
+            background: var(--card);
+            border-radius: 8px;
+            padding: 0.75rem 0.5rem;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .luck-card.current {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.15);
+        }
+
+        .luck-age {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .luck-stem, .luck-branch {
+            font-size: 1.25rem;
+            margin: 0.25rem 0;
+        }
+
+        .nav {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--card);
+            border-radius: 8px;
+            padding: 0.5rem;
+            border: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .nav a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        .nav a:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--text);
+        }
+
+        @media (max-width: 768px) {
+            .architecture-diagram {
+                grid-template-columns: 1fr;
+            }
+            .pillars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="#architecture">Architecture</a>
+        <a href="#four-pillars">Four Pillars</a>
+        <a href="#luck-pillars">Luck Pillars</a>
+        <a href="#scoring">Scoring System</a>
+        <a href="#data-flow">Data Flow</a>
+    </nav>
+
+    <div class="container">
+        <h1>Oraculum (神谕)</h1>
+        <p class="subtitle">Architecture & Calculation Flow Documentation</p>
+
+        <!-- Architecture Overview -->
+        <section id="architecture">
+            <h2>🏗️ System Architecture</h2>
+
+            <div class="architecture-diagram">
+                <div class="arch-layer">
+                    <h4>📱 Presentation Layer</h4>
+                    <div class="arch-item">BoardroomView</div>
+                    <div class="arch-item">StrategicCalendarView</div>
+                    <div class="arch-item">ProfileView</div>
+                    <div class="arch-item">ProfileEditView</div>
+                    <div class="arch-item">DayDetailView</div>
+                </div>
+
+                <div class="arch-layer">
+                    <h4>⚙️ Logic Layer</h4>
+                    <div class="arch-item">SelectionEngine</div>
+                    <div class="arch-item">ScoringSystem</div>
+                    <div class="arch-item">FourPillarsCalculator</div>
+                    <div class="arch-item">LuckPillarCalculator</div>
+                    <div class="arch-item">UsefulGodCalculator</div>
+                </div>
+
+                <div class="arch-layer">
+                    <h4>🔬 Core Engine</h4>
+                    <div class="arch-item">SolarTermCalculator</div>
+                    <div class="arch-item">JulianDayConverter</div>
+                    <div class="arch-item">TrueSolarTimeCalculator</div>
+                    <div class="arch-item">DayOfficerCalculator</div>
+                    <div class="arch-item">LunarStarsCalculator</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Data Models (SwiftData)</h3>
+                <div class="flow-row">
+                    <div class="flow-box">
+                        <strong>UserProfile</strong>
+                        <small>Birth data, BaZi chart</small>
+                    </div>
+                    <div class="flow-box">
+                        <strong>FamilyMember</strong>
+                        <small>Group selection</small>
+                    </div>
+                    <div class="flow-box">
+                        <strong>DayAnalysisCache</strong>
+                        <small>Cached scores</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Four Pillars Calculation -->
+        <section id="four-pillars">
+            <h2>🔮 Four Pillars (四柱) Calculation</h2>
+
+            <div class="card">
+                <h3>Input → Output Flow</h3>
+                <div class="flow-diagram">
+                    <div class="flow-row">
+                        <div class="flow-box input">
+                            <strong>Birth Date/Time</strong>
+                            <small>Local clock time</small>
+                        </div>
+                        <span class="arrow">+</span>
+                        <div class="flow-box input">
+                            <strong>Birth Location</strong>
+                            <small>Lat/Long</small>
+                        </div>
+                        <span class="arrow">+</span>
+                        <div class="flow-box input">
+                            <strong>Timezone</strong>
+                            <small>e.g., Asia/Hong_Kong</small>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box process">
+                            <strong>True Solar Time</strong>
+                            <small>Longitude + EOT correction</small>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box process">
+                            <strong>Year Pillar</strong>
+                            <small>Li Chun boundary</small>
+                        </div>
+                        <div class="flow-box process">
+                            <strong>Month Pillar</strong>
+                            <small>Solar Term + 五虎遁</small>
+                        </div>
+                        <div class="flow-box process">
+                            <strong>Day Pillar</strong>
+                            <small>Julian Day Number</small>
+                        </div>
+                        <div class="flow-box process">
+                            <strong>Hour Pillar</strong>
+                            <small>TST + 五鼠遁</small>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box output">
+                            <strong>FourPillarsChart</strong>
+                            <small>Complete 八字</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Example: Four Pillars Display</h3>
+                <div class="pillars-grid">
+                    <div class="pillar">
+                        <div class="pillar-title">Hour 时柱</div>
+                        <div class="pillar-char">丙</div>
+                        <div class="pillar-char">午</div>
+                        <span class="element-badge element-fire">Fire 火</span>
+                    </div>
+                    <div class="pillar highlight">
+                        <div class="pillar-title">Day 日柱 (Day Master)</div>
+                        <div class="pillar-char">甲</div>
+                        <div class="pillar-char">寅</div>
+                        <span class="element-badge element-wood">Wood 木</span>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-title">Month 月柱</div>
+                        <div class="pillar-char">丁</div>
+                        <div class="pillar-char">卯</div>
+                        <span class="element-badge element-fire">Fire 火</span>
+                    </div>
+                    <div class="pillar">
+                        <div class="pillar-title">Year 年柱</div>
+                        <div class="pillar-char">甲</div>
+                        <div class="pillar-char">辰</div>
+                        <span class="element-badge element-wood">Wood 木</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Key Formulas</h3>
+
+                <h4>Year Pillar (after Li Chun check)</h4>
+                <div class="formula">
+<span class="comment">// Reference: 1984 was Jia-Zi (甲子) year</span>
+cycleYear = year - <span class="number">1984</span>
+stemIndex = (cycleYear % <span class="number">10</span> + <span class="number">10</span>) % <span class="number">10</span>
+branchIndex = (cycleYear % <span class="number">12</span> + <span class="number">12</span>) % <span class="number">12</span>
+                </div>
+
+                <h4>Month Stem - Five Tiger Method (五虎遁)</h4>
+                <div class="formula">
+<span class="comment">// HPA-BA Formula</span>
+baseStemIndex = (yearStem.rawValue * <span class="number">2</span> + <span class="number">2</span>) % <span class="number">10</span>
+offset = (monthBranch - Tiger) % <span class="number">12</span>
+monthStem = baseStemIndex + offset
+                </div>
+
+                <h4>Day Pillar - Julian Day Number</h4>
+                <div class="formula">
+<span class="comment">// JDN 11 was Jia-Zi (甲子)</span>
+cycleIndex = (JDN - <span class="number">11</span>) % <span class="number">60</span>
+dayStem = cycleIndex % <span class="number">10</span>
+dayBranch = cycleIndex % <span class="number">12</span>
+                </div>
+
+                <h4>Hour Stem - Five Rat Method (五鼠遁)</h4>
+                <div class="formula">
+<span class="comment">// HPA-BA Formula</span>
+baseHourStem = (dayStem.rawValue * <span class="number">2</span>) % <span class="number">10</span>
+hourStem = baseHourStem + hourBranch.rawValue
+                </div>
+            </div>
+        </section>
+
+        <!-- Luck Pillars -->
+        <section id="luck-pillars">
+            <h2>🎯 Luck Pillars (大运) - Gender-Based Calculation</h2>
+
+            <div class="card">
+                <h3>Direction Determination Rule</h3>
+                <p style="margin-bottom: 1rem;">The direction of Luck Pillars depends on <strong>Year Stem Polarity</strong> and <strong>Gender</strong>:</p>
+
+                <table class="gender-table">
+                    <thead>
+                        <tr>
+                            <th>Year Stem</th>
+                            <th>Gender</th>
+                            <th>Direction</th>
+                            <th>Chinese</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Yang (甲丙戊庚壬)</td>
+                            <td>Male</td>
+                            <td class="direction-forward">→ Forward</td>
+                            <td>顺行</td>
+                        </tr>
+                        <tr>
+                            <td>Yang (甲丙戊庚壬)</td>
+                            <td>Female</td>
+                            <td class="direction-backward">← Backward</td>
+                            <td>逆行</td>
+                        </tr>
+                        <tr>
+                            <td>Yin (乙丁己辛癸)</td>
+                            <td>Male</td>
+                            <td class="direction-backward">← Backward</td>
+                            <td>逆行</td>
+                        </tr>
+                        <tr>
+                            <td>Yin (乙丁己辛癸)</td>
+                            <td>Female</td>
+                            <td class="direction-forward">→ Forward</td>
+                            <td>顺行</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Calculation Flow</h3>
+                <div class="flow-diagram">
+                    <div class="flow-row">
+                        <div class="flow-box input">
+                            <strong>FourPillarsChart</strong>
+                        </div>
+                        <span class="arrow">+</span>
+                        <div class="flow-box input">
+                            <strong>Gender</strong>
+                            <small>Male/Female</small>
+                        </div>
+                        <span class="arrow">+</span>
+                        <div class="flow-box input">
+                            <strong>Birth Date</strong>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box decision">
+                            <strong>Check Year Stem Polarity</strong>
+                            <small>Yang or Yin?</small>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box process">
+                            <strong>Determine Direction</strong>
+                            <small>Forward or Backward</small>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box process">
+                            <strong>Calculate Start Age</strong>
+                            <small>Days to Solar Term ÷ 3</small>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box process">
+                            <strong>Generate 10 Luck Pillars</strong>
+                            <small>From Month Pillar</small>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box output">
+                            <strong>LuckPillarResult</strong>
+                            <small>Direction + StartAge + Pillars[]</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Example: Male Born in 2024 (Yang Year - 甲辰)</h3>
+                <p style="margin-bottom: 0.5rem; color: var(--text-muted);">Direction: <span class="direction-forward">Forward (顺行)</span> - Stems and branches advance</p>
+                <div class="luck-pillar-demo">
+                    <div class="luck-card">
+                        <div class="luck-age">4-13</div>
+                        <div class="luck-stem">癸</div>
+                        <div class="luck-branch">巳</div>
+                    </div>
+                    <div class="luck-card current">
+                        <div class="luck-age">14-23</div>
+                        <div class="luck-stem">甲</div>
+                        <div class="luck-branch">午</div>
+                    </div>
+                    <div class="luck-card">
+                        <div class="luck-age">24-33</div>
+                        <div class="luck-stem">乙</div>
+                        <div class="luck-branch">未</div>
+                    </div>
+                    <div class="luck-card">
+                        <div class="luck-age">34-43</div>
+                        <div class="luck-stem">丙</div>
+                        <div class="luck-branch">申</div>
+                    </div>
+                    <div class="luck-card">
+                        <div class="luck-age">44-53</div>
+                        <div class="luck-stem">丁</div>
+                        <div class="luck-branch">酉</div>
+                    </div>
+                    <div class="luck-card">
+                        <div class="luck-age">54-63</div>
+                        <div class="luck-stem">戊</div>
+                        <div class="luck-branch">戌</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 1.5rem;">Example: Female Born in 2024 (Yang Year - 甲辰)</h3>
+                <p style="margin-bottom: 0.5rem; color: var(--text-muted);">Direction: <span class="direction-backward">Backward (逆行)</span> - Stems and branches retreat</p>
+                <div class="luck-pillar-demo">
+                    <div class="luck-card">
+                        <div class="luck-age">4-13</div>
+                        <div class="luck-stem">癸</div>
+                        <div class="luck-branch">巳</div>
+                    </div>
+                    <div class="luck-card current">
+                        <div class="luck-age">14-23</div>
+                        <div class="luck-stem">壬</div>
+                        <div class="luck-branch">辰</div>
+                    </div>
+                    <div class="luck-card">
+                        <div class="luck-age">24-33</div>
+                        <div class="luck-stem">辛</div>
+                        <div class="luck-branch">卯</div>
+                    </div>
+                    <div class="luck-card">
+                        <div class="luck-age">34-43</div>
+                        <div class="luck-stem">庚</div>
+                        <div class="luck-branch">寅</div>
+                    </div>
+                    <div class="luck-card">
+                        <div class="luck-age">44-53</div>
+                        <div class="luck-stem">己</div>
+                        <div class="luck-branch">丑</div>
+                    </div>
+                    <div class="luck-card">
+                        <div class="luck-age">54-63</div>
+                        <div class="luck-stem">戊</div>
+                        <div class="luck-branch">子</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Code: Direction Determination</h3>
+                <div class="formula">
+<span class="keyword">func</span> determineDirection(yearStem: HeavenlyStem, gender: Gender) -> LuckDirection {
+    <span class="keyword">let</span> isYangYear = yearStem.polarity == .yang
+
+    <span class="keyword">switch</span> (isYangYear, gender) {
+    <span class="keyword">case</span> (<span class="number">true</span>, .male):
+        <span class="keyword">return</span> .forward   <span class="comment">// 阳年男顺行</span>
+    <span class="keyword">case</span> (<span class="number">true</span>, .female):
+        <span class="keyword">return</span> .backward  <span class="comment">// 阳年女逆行</span>
+    <span class="keyword">case</span> (<span class="number">false</span>, .male):
+        <span class="keyword">return</span> .backward  <span class="comment">// 阴年男逆行</span>
+    <span class="keyword">case</span> (<span class="number">false</span>, .female):
+        <span class="keyword">return</span> .forward   <span class="comment">// 阴年女顺行</span>
+    }
+}
+                </div>
+            </div>
+        </section>
+
+        <!-- Scoring System -->
+        <section id="scoring">
+            <h2>📊 Scoring System - 7-Level Evaluation</h2>
+
+            <div class="card">
+                <h3>Scoring Levels (Priority Order)</h3>
+
+                <div class="scoring-level critical">
+                    <div class="level-num">1</div>
+                    <div class="level-content">
+                        <div class="level-title">Year Breaker (岁破) Detection</div>
+                        <div class="level-desc">Day Branch clashes with Annual Branch → -40 penalty for constructive activities, +10 bonus for destructive</div>
+                    </div>
+                </div>
+
+                <div class="scoring-level critical">
+                    <div class="level-num">2</div>
+                    <div class="level-content">
+                        <div class="level-title">Personal Clash / Fan Yin (犯寅)</div>
+                        <div class="level-desc">Day Branch clashes with User's Day Master Branch → <strong>INSTANT FAIL</strong> (only fail condition)</div>
+                    </div>
+                </div>
+
+                <div class="scoring-level warning">
+                    <div class="level-num">3</div>
+                    <div class="level-content">
+                        <div class="level-title">Day Officer Contextualization</div>
+                        <div class="level-desc">Officers compromised during Year Breaker → "Deceptive Open" instead of "Open"</div>
+                    </div>
+                </div>
+
+                <div class="scoring-level bonus">
+                    <div class="level-num">4</div>
+                    <div class="level-content">
+                        <div class="level-title">Lunar Star Processing</div>
+                        <div class="level-desc">Heavenly Virtue (天德) nullifies minor negative stars; major inauspicious stars still apply penalties</div>
+                    </div>
+                </div>
+
+                <div class="scoring-level warning">
+                    <div class="level-num">5</div>
+                    <div class="level-content">
+                        <div class="level-title">Non-Critical Clashes</div>
+                        <div class="level-desc">Month clashes, year clashes (except Fan Yin), Three Penalties, Six Harms</div>
+                    </div>
+                </div>
+
+                <div class="scoring-level bonus">
+                    <div class="level-num">6</div>
+                    <div class="level-content">
+                        <div class="level-title">Useful God (喜用神) Resonance</div>
+                        <div class="level-desc">Day's element supports User's Useful God → bonus; clashes → penalty</div>
+                    </div>
+                </div>
+
+                <div class="scoring-level normal">
+                    <div class="level-num">7</div>
+                    <div class="level-content">
+                        <div class="level-title">Branch Combination Analysis</div>
+                        <div class="level-desc">Three Harmonies (三合), Three Meetings (三会), Six Combinations (六合) → bonuses</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Qualitative Rating System</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rating</th>
+                            <th>Chinese</th>
+                            <th>Score Range</th>
+                            <th>Meaning</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="color: gold;">★★★</td>
+                            <td>大吉</td>
+                            <td>90-100</td>
+                            <td>Supremely Auspicious</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #22c55e;">★★</td>
+                            <td>吉</td>
+                            <td>75-89</td>
+                            <td>Auspicious</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #22c55e;">★</td>
+                            <td>小吉</td>
+                            <td>60-74</td>
+                            <td>Slightly Auspicious</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #6b7280;">○</td>
+                            <td>平</td>
+                            <td>45-59</td>
+                            <td>Neutral</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #f59e0b;">△</td>
+                            <td>小凶</td>
+                            <td>30-44</td>
+                            <td>Slightly Inauspicious</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #ef4444;">✗</td>
+                            <td>凶</td>
+                            <td>15-29</td>
+                            <td>Inauspicious</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #dc2626;">✗✗</td>
+                            <td>大凶</td>
+                            <td>0-14</td>
+                            <td>Supremely Inauspicious</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Data Flow -->
+        <section id="data-flow">
+            <h2>🔄 Complete Data Flow</h2>
+
+            <div class="card">
+                <h3>Profile Setup → Daily Analysis</h3>
+                <div class="flow-diagram">
+                    <div class="flow-row">
+                        <div class="flow-box input">
+                            <strong>User Input</strong>
+                            <small>Name, Gender, Birth Date/Time/Location</small>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box process">
+                            <strong>FourPillarsCalculator</strong>
+                            <small>Calculate 八字</small>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="flow-box process">
+                            <strong>UsefulGodCalculator</strong>
+                            <small>Determine 喜用神</small>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="flow-box process">
+                            <strong>LuckPillarCalculator</strong>
+                            <small>Calculate 大运</small>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box output">
+                            <strong>UserProfile</strong>
+                            <small>Stored in SwiftData</small>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓ (When viewing a date)</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box process">
+                            <strong>SelectionEngine</strong>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box process">
+                            <strong>Day Pillar</strong>
+                            <small>JulianDayConverter</small>
+                        </div>
+                        <div class="flow-box process">
+                            <strong>Day Officer</strong>
+                            <small>DayOfficerCalculator</small>
+                        </div>
+                        <div class="flow-box process">
+                            <strong>Lunar Stars</strong>
+                            <small>LunarStarsCalculator</small>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box process">
+                            <strong>ScoringSystem</strong>
+                            <small>7-Level Evaluation</small>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box output">
+                            <strong>ScoringResult</strong>
+                            <small>Score + Rating + Insights</small>
+                        </div>
+                    </div>
+
+                    <div class="arrow-down">↓</div>
+
+                    <div class="flow-row">
+                        <div class="flow-box output">
+                            <strong>UI Display</strong>
+                            <small>DayDetailView, Calendar Heatmap</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Recalculation Triggers</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>When Changed</th>
+                            <th>What Recalculates</th>
+                            <th>Handler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Birth Date/Time</td>
+                            <td>Four Pillars, Luck Pillars, Useful God, All Scores</td>
+                            <td>onChange(of: birthDate)</td>
+                        </tr>
+                        <tr>
+                            <td>Birth Timezone</td>
+                            <td>Four Pillars (True Solar Time), Luck Pillars</td>
+                            <td>onChange(of: birthTimezone)</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>Luck Pillars Direction & Sequence</td>
+                            <td>onChange(of: gender)</td>
+                        </tr>
+                        <tr>
+                            <td>Selected Activity</td>
+                            <td>Score (contextual penalties/bonuses)</td>
+                            <td>onChange(of: selectedActivity)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer style="text-align: center; margin-top: 3rem; padding: 2rem; color: var(--text-muted); border-top: 1px solid var(--border);">
+            <p>Oraculum (神谕) - Professional BaZi Date Selection</p>
+            <p style="font-size: 0.85rem; margin-top: 0.5rem;">143 Tests Passing | Swift + SwiftUI + SwiftData</p>
+        </footer>
+    </div>
+</body>
+</html>
