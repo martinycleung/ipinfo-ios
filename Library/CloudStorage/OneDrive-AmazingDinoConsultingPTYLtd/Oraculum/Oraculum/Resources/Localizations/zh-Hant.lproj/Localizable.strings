@@ -52,6 +52,8 @@
 "profile.about" = "關於";
 "profile.personalInfo" = "個人資訊";
 "profile.birthInfo" = "出生資訊";
+"profile.baziPreview" = "八字預覽";
+"profile.calculating" = "計算中...";
 "profile.industry" = "行業";
 
 // MARK: - Profile Setup

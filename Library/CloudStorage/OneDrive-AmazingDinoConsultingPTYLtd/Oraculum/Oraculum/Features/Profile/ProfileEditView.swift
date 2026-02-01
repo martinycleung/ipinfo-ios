@@ -24,6 +24,10 @@ struct ProfileEditView: View {
     @State private var industry: String
     @State private var isSaving = false
 
+    // Live BaZi preview
+    @State private var previewChart: FourPillarsChart?
+    @State private var isCalculating = false
+
     private let industries = [
         "industry.technology",
         "industry.finance",
@@ -83,6 +87,47 @@ struct ProfileEditView: View {
                     }
                 }
 
+                // Live BaZi Preview Section
+                Section(localization.localize("profile.baziPreview")) {
+                    if isCalculating {
+                        HStack {
+                            Spacer()
+                            ProgressView()
+                                .scaleEffect(0.8)
+                            Text(localization.localize("profile.calculating"))
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            Spacer()
+                        }
+                        .padding(.vertical, 8)
+                    } else if let chart = previewChart {
+                        // Four Pillars Preview Grid
+                        HStack(spacing: 0) {
+                            PreviewPillarCell(
+                                title: localization.localize("pillar.hour"),
+                                pillar: chart.hourPillar
+                            )
+                            Divider()
+                            PreviewPillarCell(
+                                title: localization.localize("pillar.day"),
+                                pillar: chart.dayPillar,
+                                isHighlighted: true
+                            )
+                            Divider()
+                            PreviewPillarCell(
+                                title: localization.localize("pillar.month"),
+                                pillar: chart.monthPillar
+                            )
+                            Divider()
+                            PreviewPillarCell(
+                                title: localization.localize("pillar.year"),
+                                pillar: chart.yearPillar
+                            )
+                        }
+                        .frame(height: 100)
+                    }
+                }
+
                 Section(localization.localize("profile.industry")) {
                     ForEach(industries, id: \.self) { ind in
                         Button {
@@ -99,6 +144,19 @@ struct ProfileEditView: View {
                             }
                         }
                     }
+                }
+            }
+            .task {
+                await calculatePreview()
+            }
+            .onChange(of: birthDate) { _, _ in
+                Task {
+                    await calculatePreview()
+                }
+            }
+            .onChange(of: birthTimezone) { _, _ in
+                Task {
+                    await calculatePreview()
                 }
             }
             .navigationTitle(localization.localize("profile.editProfile"))
@@ -153,6 +211,56 @@ struct ProfileEditView: View {
                 dismiss()
             }
         }
+    }
+
+    private func calculatePreview() async {
+        isCalculating = true
+
+        let calculator = FourPillarsCalculator()
+        let chart = await calculator.calculate(
+            birthDate: birthDate,
+            birthLocation: CLLocationCoordinate2D(
+                latitude: profile.birthLatitude,
+                longitude: profile.birthLongitude
+            ),
+            timezone: TimeZone(identifier: birthTimezone) ?? .current
+        )
+
+        await MainActor.run {
+            previewChart = chart
+            isCalculating = false
+        }
+    }
+}
+
+// MARK: - Preview Pillar Cell
+
+struct PreviewPillarCell: View {
+    let title: String
+    let pillar: Pillar
+    var isHighlighted: Bool = false
+
+    var body: some View {
+        VStack(spacing: 4) {
+            Text(title)
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+
+            Text(pillar.stem.chineseName)
+                .font(.title3)
+                .fontWeight(.medium)
+
+            Text(pillar.branch.chineseName)
+                .font(.title3)
+                .fontWeight(.medium)
+
+            Text(pillar.branch.zodiacAnimalChinese)
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 8)
+        .background(isHighlighted ? Color.blue.opacity(0.1) : Color.clear)
     }
 }
 

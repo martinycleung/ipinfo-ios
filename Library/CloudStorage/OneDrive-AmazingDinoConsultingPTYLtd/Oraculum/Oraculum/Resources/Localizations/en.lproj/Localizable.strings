@@ -51,6 +51,8 @@
 "profile.about" = "About";
 "profile.personalInfo" = "Personal Information";
 "profile.birthInfo" = "Birth Information";
+"profile.baziPreview" = "Ba Zi Preview";
+"profile.calculating" = "Calculating...";
 "profile.industry" = "Industry";
 
 // MARK: - Profile Setup

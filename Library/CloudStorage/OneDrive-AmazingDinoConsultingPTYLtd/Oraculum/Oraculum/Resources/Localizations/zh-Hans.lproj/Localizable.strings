@@ -52,6 +52,8 @@
 "profile.about" = "关于";
 "profile.personalInfo" = "个人信息";
 "profile.birthInfo" = "出生信息";
+"profile.baziPreview" = "八字预览";
+"profile.calculating" = "计算中...";
 "profile.industry" = "行业";
 
 // MARK: - Profile Setup
