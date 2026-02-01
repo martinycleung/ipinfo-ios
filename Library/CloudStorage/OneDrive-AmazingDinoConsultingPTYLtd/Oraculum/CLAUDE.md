@@ -27,6 +27,11 @@ Oraculum/
 │   │   │   ├── DayMasterStrengthCalculator.swift
 │   │   │   ├── ChartPatternAnalyzer.swift
 │   │   │   └── ClimateAdjustmentCalculator.swift
+│   │   ├── AI/                    # LLM integration (iOS 18+)
+│   │   │   ├── LLMService.swift          # Protocol and context types
+│   │   │   ├── AppleFoundationModelService.swift  # Apple Foundation Models
+│   │   │   ├── PromptBuilder.swift       # Builds consultation prompts
+│   │   │   └── ConsultantPersona.swift   # System prompts for personas
 │   │   └── Logic/                 # Calculators and algorithms
 │   │       ├── FourPillarsCalculator.swift
 │   │       ├── SolarTermCalculator.swift
@@ -34,7 +39,8 @@ Oraculum/
 │   │       ├── LunarStarsCalculator.swift
 │   │       └── Selection/
 │   │           ├── SelectionEngine.swift
-│   │           └── ScoringSystem.swift   # Advanced utility-based scoring
+│   │           ├── ScoringSystem.swift   # Advanced utility-based scoring
+│   │           └── MLValidationEngine.swift  # ML-enhanced predictions
 │   ├── Data/Models/               # SwiftData models
 │   │   ├── UserProfile.swift
 │   │   ├── FamilyMember.swift
@@ -297,7 +303,40 @@ xcrun devicectl device install app \
 - **StrategicCalendarView** - Heatmap calendar with date selection
 - **ProfileView** - User Ba Zi chart display and settings
 - **ProfileEditView** - Edit user profile information
-- **DayDetailView** - Detailed analysis for selected date
+- **DayDetailView** - Detailed analysis for selected date with professional insights
+
+### Professional Insights Display (v1.3)
+The scoring system generates personalized professional insights that are displayed in the UI:
+
+**ScoringResult Properties:**
+- `professionalTitle` - Localized title (e.g., "insight.personalClash.title")
+- `professionalInsight` - Detailed personalized advice
+- `alternativeDateSuggestion` - Suggestion for better dates (if applicable)
+- `hasPersonalClash` - Critical warning flag
+- `isYearBreaker` - Year breaker warning flag
+
+**UI Components Displaying Insights:**
+- `DayDetailView` - Shows full insight section with icon, title, and advice
+- `DayBriefCard` - Shows condensed insight on Boardroom dashboard
+- `BoardroomViewModel.getTodayRecommendation()` - Returns professional insight text
+
+**Insight Icons by Severity:**
+- Personal Clash: `person.crop.circle.badge.exclamationmark` (red)
+- Year Breaker: `exclamationmark.shield` (orange)
+- Caution/Avoid: `lightbulb.fill` (orange/red)
+- Good/Excellent: `sparkles` (green/yellow)
+
+### LLM Infrastructure (iOS 18+, Prepared)
+The app includes LLM infrastructure for future enhanced personalization:
+
+**Components:**
+- `LLMService.swift` - Protocol defining LLM interface
+- `AppleFoundationModelService.swift` - Apple Foundation Models integration
+- `FallbackLLMService.swift` - Rule-based fallback for non-iOS 18 devices
+- `PromptBuilder.swift` - Builds consultation prompts from BaZi context
+- `ConsultantPersona.swift` - System prompts for different consultant personas
+
+**Status:** Infrastructure ready, UI integration pending for iOS 18+ devices
 
 ### Settings Views
 - **NotificationSettingsView** - Push notification preferences
@@ -314,6 +353,22 @@ xcrun devicectl device install app \
 - Ensure all lines end with semicolon `;`
 - Validate with: `plutil -lint Localizable.strings`
 
+### Warning String Localization
+Warnings from ScoringResult may be:
+- Localization keys with "warning." prefix (e.g., "warning.yearBreaker")
+- Localization keys with "score." prefix (e.g., "score.instantFail")
+- Plain text strings (legacy/backwards compatibility)
+
+Always check both prefixes when localizing warnings:
+```swift
+private func localizedWarning(_ warning: String) -> String {
+    if warning.hasPrefix("warning.") || warning.hasPrefix("score.") {
+        return localization.localize(warning)
+    }
+    return warning  // Return as-is for plain text
+}
+```
+
 ### SwiftData Concurrency
 - SelectionEngine is an `actor` for thread safety
 - Use `await` when calling engine methods
@@ -326,13 +381,13 @@ xcrun devicectl device install app \
 
 ## Version History
 
-### Current Features (v1.2)
+### Current Features (v1.3)
 - Complete Ba Zi chart calculation
 - Advanced utility-based scoring algorithm
 - Date selection for 30+ activity types
 - Group selection for multiple users
 - Multi-language support (EN, ZH-Hans, ZH-Hant)
-- Professional insight messaging
+- Professional insight messaging with UI display
 - Privacy-first local data storage
 - Branch Combinations (三合, 三会, 六合, 冲刑破害)
 - Void (空亡) position analysis
@@ -340,10 +395,19 @@ xcrun devicectl device install app \
 - Luck Pillars (大运) 10-year cycle calculation
 - UsefulGod validation (透干, 有根, 被冲, 空亡, 有护)
 - Qualitative rating system (大吉 to 大凶)
-- **NEW:** ML Validation Engine with CoreML support
-- **NEW:** Python ML pipeline for CBDB historical data training
-- **NEW:** Feature extraction: Three Harmony, Six Combination, clash detection
+- ML Validation Engine with CoreML support
+- Python ML pipeline for CBDB historical data training
+- Feature extraction: Three Harmony, Six Combination, clash detection
+- **NEW:** Professional insights displayed in DayDetailView and DayBriefCard
+- **NEW:** BoardroomViewModel uses personalized insights for recommendations
+- **NEW:** Warning localization supports both "warning." and "score." prefixes
+- **NEW:** LLM infrastructure prepared (iOS 18+ ready)
 - **NEW:** 110 unit tests passing
+
+### v1.2 (ML Validation Engine)
+- ML Validation Engine with CoreML support
+- Python ML pipeline for CBDB historical data training
+- Feature extraction: Three Harmony, Six Combination, clash detection
 
 ### v1.1 (Advanced BaZi Analysis)
 - Branch Combinations and Void analysis
