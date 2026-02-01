@@ -55,6 +55,10 @@
 "profile.baziPreview" = "八字预览";
 "profile.calculating" = "计算中...";
 "profile.industry" = "行业";
+"profile.luckPillars" = "大运";
+"profile.luckStartAge" = "起运年龄：%d岁";
+"profile.luckDirection.forward" = "顺行";
+"profile.luckDirection.backward" = "逆行";
 
 // MARK: - Profile Setup
 "setup.welcome" = "欢迎使用神谕";

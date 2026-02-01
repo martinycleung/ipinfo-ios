@@ -54,6 +54,10 @@
 "profile.baziPreview" = "Ba Zi Preview";
 "profile.calculating" = "Calculating...";
 "profile.industry" = "Industry";
+"profile.luckPillars" = "Luck Pillars (大运)";
+"profile.luckStartAge" = "Starting age: %d";
+"profile.luckDirection.forward" = "Forward (顺行)";
+"profile.luckDirection.backward" = "Backward (逆行)";
 
 // MARK: - Profile Setup
 "setup.welcome" = "Welcome to Oraculum";
