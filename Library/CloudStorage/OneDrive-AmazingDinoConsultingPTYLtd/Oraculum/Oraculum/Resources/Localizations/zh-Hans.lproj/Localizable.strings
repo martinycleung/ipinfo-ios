@@ -1,0 +1,416 @@
+/*
+  Localizable.strings (Simplified Chinese)
+  Oraculum
+  简体中文
+*/
+
+// MARK: - App General
+"app.name" = "神谕";
+"app.tagline" = "您的私人玄学顾问";
+
+// MARK: - Tab Bar
+"tab.boardroom" = "总览";
+"tab.calendar" = "日历";
+"tab.familyOffice" = "家族办公室";
+"tab.profile" = "个人";
+
+// MARK: - Boardroom
+"boardroom.title" = "总览";
+"boardroom.welcome" = "欢迎回来，%@";
+"boardroom.nextWindow" = "下一个最佳时机";
+"boardroom.nextWindowFor" = "适合%@";
+"boardroom.todayEnergy" = "今日能量";
+"boardroom.overallScore" = "综合评分";
+"boardroom.whatPlanning" = "您计划做什么？";
+"boardroom.upcomingOpportunities" = "即将到来的良机";
+"boardroom.viewCalendar" = "查看日历";
+"boardroom.analyzing" = "正在分析即将到来的日子...";
+
+// MARK: - Calendar
+"calendar.title" = "战略日历";
+"calendar.dayPillar" = "日柱";
+"calendar.dayOfficer" = "日建";
+"calendar.solarTerm" = "节气";
+"calendar.element" = "五行";
+"calendar.activeStars" = "当值神煞";
+"calendar.notes" = "备注";
+"calendar.dayDetail" = "日期详情";
+
+// MARK: - Profile
+"profile.title" = "个人资料";
+"profile.edit" = "编辑";
+"profile.editProfile" = "编辑资料";
+"profile.yourBaZiChart" = "您的八字命盘";
+"profile.dayMaster" = "日主";
+"profile.dayMasterDescription" = "日主代表您的核心自我";
+"profile.usefulGod" = "喜用神";
+"profile.usefulGodDescription" = "%@能量强的日子对您有利";
+"profile.settings" = "设置";
+"profile.notifications" = "通知";
+"profile.language" = "语言";
+"profile.privacy" = "隐私";
+"profile.about" = "关于";
+"profile.personalInfo" = "个人信息";
+"profile.birthInfo" = "出生信息";
+"profile.industry" = "行业";
+
+// MARK: - Profile Setup
+"setup.welcome" = "欢迎使用神谕";
+"setup.tagline" = "您的私人玄学顾问";
+"setup.description" = "基于天文计算和传统八字智慧的精准择日服务。";
+"setup.getStarted" = "开始使用";
+"setup.whatCallYou" = "您希望我们如何称呼您？";
+"setup.yourName" = "您的姓名";
+"setup.continue" = "继续";
+"setup.whenWhereBorn" = "您的出生时间和地点？";
+"setup.birthEssential" = "这对于计算您的个人八字命盘至关重要。";
+"setup.birthDate" = "出生日期";
+"setup.birthTime" = "出生时间";
+"setup.birthLocation" = "出生地点";
+"setup.city" = "城市";
+"setup.timezone" = "时区";
+"setup.yourIndustry" = "您所在的行业？";
+"setup.industryHelp" = "这有助于我们提供更相关的见解。";
+"setup.completeSetup" = "完成设置";
+"setup.selectGender" = "选择性别";
+"setup.genderNote" = "性别对于准确计算八字大运是必需的";
+
+// MARK: - Gender
+"gender.male" = "男";
+"gender.female" = "女";
+"profile.gender" = "性别";
+
+// MARK: - Family Office
+"familyOffice.title" = "家族办公室";
+"familyOffice.primaryProfile" = "主要资料";
+"familyOffice.familyPartners" = "家人与合作伙伴";
+"familyOffice.findCommonDays" = "查找共同吉日";
+"familyOffice.addMember" = "添加成员";
+"familyOffice.groupSelection" = "群组择日";
+"familyOffice.noCommonDays" = "没有共同吉日";
+"familyOffice.noCommonDaysDesc" = "未找到适合所有选定成员的日子。";
+"familyOffice.findingDays" = "正在查找共同吉日...";
+
+// MARK: - Day Analysis
+"day.excellent" = "非常适合重要活动的日子";
+"day.good" = "良好的日子，可以放心进行";
+"day.neutral" = "中性日子，适合日常事务";
+"day.caution" = "请谨慎行事，考虑延期";
+"day.avoid" = "今日应避免重大活动";
+
+// MARK: - Recommendations
+"recommendation.excellent" = "极佳";
+"recommendation.good" = "良好";
+"recommendation.neutral" = "中性";
+"recommendation.caution" = "谨慎";
+"recommendation.avoid" = "避免";
+
+// MARK: - Pillars
+"pillar.year" = "年柱";
+"pillar.month" = "月柱";
+"pillar.day" = "日柱";
+"pillar.hour" = "时柱";
+
+// MARK: - Five Elements
+"element.wood" = "木";
+"element.fire" = "火";
+"element.earth" = "土";
+"element.metal" = "金";
+"element.water" = "水";
+
+// MARK: - Yin Yang
+"yinyang.yin" = "阴";
+"yinyang.yang" = "阳";
+
+// MARK: - Heavenly Stems
+"stem.jia" = "甲";
+"stem.yi" = "乙";
+"stem.bing" = "丙";
+"stem.ding" = "丁";
+"stem.wu" = "戊";
+"stem.ji" = "己";
+"stem.geng" = "庚";
+"stem.xin" = "辛";
+"stem.ren" = "壬";
+"stem.gui" = "癸";
+
+// MARK: - Earthly Branches
+"branch.zi" = "子";
+"branch.chou" = "丑";
+"branch.yin" = "寅";
+"branch.mao" = "卯";
+"branch.chen" = "辰";
+"branch.si" = "巳";
+"branch.wu" = "午";
+"branch.wei" = "未";
+"branch.shen" = "申";
+"branch.you" = "酉";
+"branch.xu" = "戌";
+"branch.hai" = "亥";
+
+// MARK: - Zodiac Animals
+"zodiac.rat" = "鼠";
+"zodiac.ox" = "牛";
+"zodiac.tiger" = "虎";
+"zodiac.rabbit" = "兔";
+"zodiac.dragon" = "龙";
+"zodiac.snake" = "蛇";
+"zodiac.horse" = "马";
+"zodiac.goat" = "羊";
+"zodiac.monkey" = "猴";
+"zodiac.rooster" = "鸡";
+"zodiac.dog" = "狗";
+"zodiac.pig" = "猪";
+
+// MARK: - Day Officers
+"officer.jian" = "建";
+"officer.chu" = "除";
+"officer.man" = "满";
+"officer.ping" = "平";
+"officer.ding" = "定";
+"officer.zhi" = "执";
+"officer.po" = "破";
+"officer.wei" = "危";
+"officer.cheng" = "成";
+"officer.shou" = "收";
+"officer.kai" = "开";
+"officer.bi" = "闭";
+
+// MARK: - Day Officer Meanings
+"officer.jian.meaning" = "建日。宜开始新事业，但忌极端行动。";
+"officer.chu.meaning" = "除日。宜清除障碍、就医、戒除恶习。";
+"officer.man.meaning" = "满日。宜庆祝、收获、接受祝福。";
+"officer.ping.meaning" = "平日。中性日，适合日常活动。";
+"officer.ding.meaning" = "定日。宜签约、做决定、处理事务。";
+"officer.zhi.meaning" = "执日。宜建设、捕捉、采取行动。";
+"officer.po.meaning" = "破日。忌重大活动，仅适合拆除。";
+"officer.wei.meaning" = "危日。需谨慎，忌冒险活动。";
+"officer.cheng.meaning" = "成日。极宜谈判、签约、完成事项。";
+"officer.shou.meaning" = "收日。宜收债、待客、收购。";
+"officer.kai.meaning" = "开日。极宜开业、出行、新的开始。";
+"officer.bi.meaning" = "闭日。宜丧葬、结束交易、完结项目。";
+
+// MARK: - Lunar Stars
+"star.tianDe" = "天德";
+"star.yueDe" = "月德";
+"star.tianDeHe" = "天德合";
+"star.yueDheHe" = "月德合";
+"star.tianXi" = "天喜";
+"star.tianYi" = "天医";
+"star.luShen" = "禄神";
+"star.guiRen" = "贵人";
+"star.suiPo" = "岁破";
+"star.yuePo" = "月破";
+"star.riPo" = "日破";
+"star.sanSha" = "三煞";
+"star.wuGui" = "五鬼";
+"star.baiHu" = "白虎";
+"star.xuanWu" = "玄武";
+"star.gouChen" = "勾陈";
+"star.tengShe" = "腾蛇";
+"star.hongLuan" = "红鸾";
+"star.tianKu" = "天哭";
+"star.sangMen" = "丧门";
+"star.diaoKe" = "吊客";
+
+// MARK: - Solar Terms
+"solarTerm.liChun" = "立春";
+"solarTerm.yuShui" = "雨水";
+"solarTerm.jingZhe" = "惊蛰";
+"solarTerm.chunFen" = "春分";
+"solarTerm.qingMing" = "清明";
+"solarTerm.guYu" = "谷雨";
+"solarTerm.liXia" = "立夏";
+"solarTerm.xiaoMan" = "小满";
+"solarTerm.mangZhong" = "芒种";
+"solarTerm.xiaZhi" = "夏至";
+"solarTerm.xiaoShu" = "小暑";
+"solarTerm.daShu" = "大暑";
+"solarTerm.liQiu" = "立秋";
+"solarTerm.chuShu" = "处暑";
+"solarTerm.baiLu" = "白露";
+"solarTerm.qiuFen" = "秋分";
+"solarTerm.hanLu" = "寒露";
+"solarTerm.shuangJiang" = "霜降";
+"solarTerm.liDong" = "立冬";
+"solarTerm.xiaoXue" = "小雪";
+"solarTerm.daXue" = "大雪";
+"solarTerm.dongZhi" = "冬至";
+"solarTerm.xiaoHan" = "小寒";
+"solarTerm.daHan" = "大寒";
+
+// MARK: - Activities
+"activity.signContract" = "签约";
+"activity.negotiation" = "谈判";
+"activity.openBusiness" = "开业";
+"activity.launchProduct" = "发布产品";
+"activity.investMoney" = "投资";
+"activity.closeDeal" = "成交";
+"activity.hireEmployee" = "招聘";
+"activity.startPartnership" = "建立合作";
+"activity.marriage" = "结婚";
+"activity.engagement" = "订婚";
+"activity.moveHouse" = "搬家";
+"activity.startJob" = "入职";
+"activity.askForRaise" = "要求加薪";
+"activity.importantMeeting" = "重要会议";
+"activity.funeral" = "殡葬";
+"activity.ancestorWorship" = "祭祀";
+"activity.groundbreaking" = "动土";
+"activity.grandOpening" = "开张";
+"activity.startConstruction" = "开工";
+"activity.renovation" = "装修";
+"activity.demolition" = "拆除";
+"activity.installDoor" = "安门";
+"activity.longTravel" = "远行";
+"activity.businessTrip" = "出差";
+"activity.relocation" = "迁移";
+"activity.surgery" = "手术";
+"activity.startTreatment" = "开始治疗";
+"activity.checkup" = "体检";
+"activity.lawsuit" = "诉讼";
+"activity.signLegalDoc" = "签署法律文件";
+"activity.courtAppearance" = "出庭";
+
+// MARK: - Relationships
+"relationship.self" = "本人";
+"relationship.spouse" = "配偶";
+"relationship.partner" = "商业伙伴";
+"relationship.child" = "子女";
+"relationship.parent" = "父母";
+"relationship.sibling" = "兄弟姐妹";
+"relationship.employee" = "重要员工";
+"relationship.other" = "其他";
+
+// MARK: - Industries
+"industry.technology" = "科技";
+"industry.finance" = "金融";
+"industry.consulting" = "咨询";
+"industry.realEstate" = "房地产";
+"industry.healthcare" = "医疗";
+"industry.legal" = "法律";
+"industry.manufacturing" = "制造业";
+"industry.retail" = "零售";
+"industry.other" = "其他";
+
+// MARK: - Warnings
+"warning.yearBreaker" = "检测到岁破 - 应避免重大活动";
+"warning.monthBreaker" = "检测到月破 - 请谨慎行事";
+"warning.dayClash" = "日柱与您的命盘相冲 - 建议另择吉日";
+
+// MARK: - Time Windows
+"time.siWu" = "上午10点 - 下午2点（巳午时）";
+"time.maoChen" = "上午6点 - 上午10点（卯辰时）";
+"time.weiShen" = "下午2点 - 下午6点（未申时）";
+"time.wu" = "上午11点 - 下午1点（午时）";
+
+// MARK: - Common Actions
+"action.cancel" = "取消";
+"action.done" = "完成";
+"action.add" = "添加";
+"action.save" = "保存";
+"action.delete" = "删除";
+"action.edit" = "编辑";
+
+// MARK: - Notifications Settings
+"notifications.types" = "通知类型";
+"notifications.dailyBrief" = "每日简报";
+"notifications.auspiciousDays" = "吉日提醒";
+"notifications.warnings" = "警告提醒";
+"notifications.footer" = "开启通知以接收每日洞察和重要日期提醒。";
+
+// MARK: - Privacy Settings
+"privacy.dataCollection" = "数据收集";
+"privacy.analytics" = "分析数据";
+"privacy.crashReports" = "崩溃报告";
+"privacy.localStorageNotice" = "您的出生数据和个人信息存储在本地设备上，绝不会上传至我们的服务器。";
+"privacy.privacyPolicy" = "隐私政策";
+"privacy.termsOfService" = "服务条款";
+"privacy.deleteAllData" = "删除所有数据";
+"privacy.deleteWarning" = "这将永久删除您的所有数据，包括个人资料和保存的偏好设置。";
+"privacy.deleteConfirmTitle" = "删除所有数据？";
+"privacy.deleteConfirm" = "全部删除";
+"privacy.deleteConfirmMessage" = "此操作无法撤销。您的所有个人资料、偏好设置和缓存分析将被永久删除。";
+"privacy.lastUpdated" = "最后更新：2026年2月";
+
+// MARK: - Privacy Policy Sections
+"privacy.section.overview" = "概述";
+"privacy.section.overviewContent" = "神谕（「本应用」）致力于保护您的隐私。本隐私政策说明了我们在您使用本应用时如何收集、使用和保护您的信息。";
+"privacy.section.dataCollection" = "我们收集的信息";
+"privacy.section.dataCollectionContent" = "我们收集您直接提供的信息，包括姓名、出生日期、出生时间和出生地点。这些信息对于计算您的个人八字命盘和提供个性化择日建议至关重要。";
+"privacy.section.localStorage" = "本地数据存储";
+"privacy.section.localStorageContent" = "所有个人数据，包括您的出生信息和计算的八字命盘，均使用安全的本地存储专门存储在您的设备上。我们不会将您的个人信息传输、上传或存储在任何外部服务器上。";
+"privacy.section.analytics" = "分析";
+"privacy.section.analyticsContent" = "如果您选择启用分析功能，我们会收集匿名使用数据，如功能使用模式和应用性能指标。这些数据无法用于识别您的身份，仅用于改善应用体验。";
+"privacy.section.thirdParties" = "第三方服务";
+"privacy.section.thirdPartiesContent" = "我们不会与第三方共享、出售或转让您的任何个人信息。本应用独立运行，不使用第三方分析或广告服务。";
+"privacy.section.dataRetention" = "数据保留";
+"privacy.section.dataRetentionContent" = "您的数据将保留在您的设备上，直到您选择删除。您可以随时通过应用中的隐私设置删除所有数据。";
+"privacy.section.yourRights" = "您的权利";
+"privacy.section.yourRightsContent" = "您有权随时访问、修改或删除您的个人信息。您可以通过应用设置更新您的个人资料或删除所有数据。";
+"privacy.section.contact" = "联系我们";
+"privacy.section.contactContent" = "如果您对本隐私政策有任何疑问，请通过 martinycleung@gmail.com 联系我们。";
+
+// MARK: - Terms of Service
+"terms.acceptance" = "条款接受";
+"terms.acceptanceContent" = "下载、安装或使用神谕即表示您同意受本服务条款的约束。如果您不同意这些条款，请勿使用本应用。";
+"terms.disclaimer" = "服务性质";
+"terms.disclaimerContent" = "神谕根据传统中国玄学原理提供择日指导，特别是八字（四柱命理）及相关方法论。本应用使用天文计算和既定的玄学算法生成建议。";
+"terms.professionalAdvice" = "非专业建议";
+"terms.professionalAdviceContent" = "神谕提供的信息仅供参考和娱乐目的。不应将其视为专业的财务、法律、医疗或任何其他类型的专业建议。重大决策请务必咨询合格的专业人士。";
+"terms.riskWarning" = "风险自担";
+"terms.riskWarningContent" = "您根据本应用提供的信息做出的任何决定均由您自行负责。我们不保证特定结果，对于因使用本应用建议而产生的任何结果或后果不承担责任。";
+"terms.intellectualProperty" = "知识产权";
+"terms.intellectualPropertyContent" = "神谕的所有内容、功能、算法均为开发者所有，受版权、商标和其他知识产权法保护。未经书面许可，不得复制、修改、分发或创建衍生作品。";
+"terms.limitationOfLiability" = "责任限制";
+"terms.limitationOfLiabilityContent" = "在法律允许的最大范围内，神谕及其开发者对因您使用本应用而产生的任何间接、附带、特殊、后果性或惩罚性损害不承担责任。";
+"terms.governingLaw" = "适用法律";
+"terms.governingLawContent" = "本条款应受香港特别行政区法律管辖并按其解释，不考虑其法律冲突条款。";
+
+// MARK: - About Page
+"about.technology" = "技术";
+"about.algorithm.title" = "高精度八字算法";
+"about.algorithm.description" = "神谕使用基于VSOP87理论的天文精确计算来确定太阳黄经，使用儒略日计算日柱，并使用真太阳时校正进行精确的命盘计算。我们的效用评分引擎根据您的具体意图评估日期，而非仅仅评估一般运势。";
+"about.coreFeatures" = "核心功能";
+"about.feature.bazi" = "八字命盘分析";
+"about.feature.baziDesc" = "天文精度的完整四柱计算";
+"about.feature.dateSelection" = "战略择日";
+"about.feature.dateSelectionDesc" = "支持30多种活动类型的意图感知评分";
+"about.feature.groupSelection" = "群组择日";
+"about.feature.groupSelectionDesc" = "为多个参与者寻找最佳日期";
+"about.feature.usefulGod" = "喜用神整合";
+"about.feature.usefulGodDesc" = "基于您五行需求的个性化评分";
+"about.methodology" = "方法论";
+"about.methodology.description" = "我们的算法基于经典八字原理，包括建除十二神、神煞分析、六冲六害、五虎遁和五鼠遁法，以及喜用神理论。所有计算优先考虑天文精确度，而非简化的查表方式。";
+"about.website" = "网站";
+"about.contactSupport" = "联系支持";
+"about.madeIn" = "精心打造于香港";
+
+// MARK: - Advanced Scoring Messages
+"score.yearBreakerConstructive" = "年度能量与建设性活动冲突。今日签署的合同存在隐藏风险。";
+"score.yearBreakerDestructive" = "强烈的冲克能量有利于清除和移除程序。";
+"score.personalClashCritical" = "严重警告：检测到个人日柱相冲。受伤或冲突风险较高。避免出行和高风险活动。";
+"score.officerCompromised" = "因年度相冲，日建能量不稳定。";
+"score.elementClash" = "今日能量克制您所需的元素。";
+
+// MARK: - Score Titles
+"score.title.personalClash" = "个人安全警报";
+"score.title.unstableFoundation" = "基础不稳";
+"score.title.viableRemoval" = "适合清除";
+"score.title.deceptiveOpen" = "虚假开日";
+"score.title.optimalWindow" = "最佳时机";
+"score.title.favorableConditions" = "有利条件";
+"score.title.neutralEnergy" = "中性能量";
+"score.title.exerciseCaution" = "需谨慎行事";
+"score.title.strategicPause" = "战略暂停";
+
+// MARK: - Score Insights
+"score.insight.personalClash" = "今日能量与您的个人命盘直接冲突。这是对个人安全最危险的配置。请勿进行出行、谈判或任何高风险活动。";
+"score.insight.yearBreakerConstructive" = "年度能量今日处于直接冲突状态。签约、创业或重大承诺等建设性活动存在较高的无效或逆转风险。正在重新计算下一个最佳时机...";
+"score.insight.yearBreakerDestructive" = "虽然总体动荡，但今日的冲克能量对清除、拆除或结束程序有利。破坏能量有利于提取和清理。";
+"score.insight.compromisedOfficer" = "总体能量看似开放，但潜在冲突破坏了基础。看似机会可能会泄漏能量或意外逆转。";
+"score.insight.excellent" = "宇宙能量与个人能量之间的卓越协调。这是进行您计划活动的最佳时机。请放心行动。";
+"score.insight.good" = "有利条件，需考虑一些小因素。今日能量流动良好，支持您的意图。";
+"score.insight.neutral" = "平衡的能量，没有强烈的支持或反对。适合日常活动，但避免重大承诺。";
+"score.insight.caution" = "信号混合，需仔细考虑。如果此活动不能等待，请采取额外预防措施并准备应急计划。";
+"score.insight.avoid" = "多重因素建议今日避免重大活动。能量配置不支持您的意图。请考虑其他日期。";

@@ -1,0 +1,415 @@
+/*
+  Localizable.strings (English)
+  Oraculum
+*/
+
+// MARK: - App General
+"app.name" = "Oraculum";
+"app.tagline" = "Your Personal Metaphysics Consultant";
+
+// MARK: - Tab Bar
+"tab.boardroom" = "Boardroom";
+"tab.calendar" = "Calendar";
+"tab.familyOffice" = "Family Office";
+"tab.profile" = "Profile";
+
+// MARK: - Boardroom
+"boardroom.title" = "Boardroom";
+"boardroom.welcome" = "Welcome back, %@";
+"boardroom.nextWindow" = "Next Optimal Window";
+"boardroom.nextWindowFor" = "for %@";
+"boardroom.todayEnergy" = "Today's Energy";
+"boardroom.overallScore" = "Overall Score";
+"boardroom.whatPlanning" = "What are you planning?";
+"boardroom.upcomingOpportunities" = "Upcoming Opportunities";
+"boardroom.viewCalendar" = "View Calendar";
+"boardroom.analyzing" = "Analyzing upcoming days...";
+
+// MARK: - Calendar
+"calendar.title" = "Strategic Calendar";
+"calendar.dayPillar" = "Day Pillar";
+"calendar.dayOfficer" = "Day Officer";
+"calendar.solarTerm" = "Solar Term";
+"calendar.element" = "Element";
+"calendar.activeStars" = "Active Stars";
+"calendar.notes" = "Notes";
+"calendar.dayDetail" = "Day Detail";
+
+// MARK: - Profile
+"profile.title" = "Profile";
+"profile.edit" = "Edit";
+"profile.editProfile" = "Edit Profile";
+"profile.yourBaZiChart" = "Your Ba Zi Chart";
+"profile.dayMaster" = "Day Master";
+"profile.dayMasterDescription" = "The Day Master represents your core self";
+"profile.usefulGod" = "Useful God";
+"profile.usefulGodDescription" = "Days with strong %@ energy are favorable for you";
+"profile.settings" = "Settings";
+"profile.notifications" = "Notifications";
+"profile.language" = "Language";
+"profile.privacy" = "Privacy";
+"profile.about" = "About";
+"profile.personalInfo" = "Personal Information";
+"profile.birthInfo" = "Birth Information";
+"profile.industry" = "Industry";
+
+// MARK: - Profile Setup
+"setup.welcome" = "Welcome to Oraculum";
+"setup.tagline" = "Your Personal Metaphysics Consultant";
+"setup.description" = "Precision date selection powered by astronomical calculations and traditional Ba Zi wisdom.";
+"setup.getStarted" = "Get Started";
+"setup.whatCallYou" = "What should we call you?";
+"setup.yourName" = "Your name";
+"setup.continue" = "Continue";
+"setup.whenWhereBorn" = "When and where were you born?";
+"setup.birthEssential" = "This is essential for calculating your personal Ba Zi chart.";
+"setup.birthDate" = "Birth Date";
+"setup.birthTime" = "Birth Time";
+"setup.birthLocation" = "Birth Location";
+"setup.city" = "City";
+"setup.timezone" = "Timezone";
+"setup.yourIndustry" = "What's your industry?";
+"setup.industryHelp" = "This helps us provide more relevant insights.";
+"setup.completeSetup" = "Complete Setup";
+"setup.selectGender" = "Select Gender";
+"setup.genderNote" = "Gender is required for accurate BaZi Luck Pillar calculations";
+
+// MARK: - Gender
+"gender.male" = "Male";
+"gender.female" = "Female";
+"profile.gender" = "Gender";
+
+// MARK: - Family Office
+"familyOffice.title" = "Family Office";
+"familyOffice.primaryProfile" = "Primary Profile";
+"familyOffice.familyPartners" = "Family & Partners";
+"familyOffice.findCommonDays" = "Find Common Good Days";
+"familyOffice.addMember" = "Add Member";
+"familyOffice.groupSelection" = "Group Selection";
+"familyOffice.noCommonDays" = "No Common Good Days";
+"familyOffice.noCommonDaysDesc" = "No days found that work well for all selected members.";
+"familyOffice.findingDays" = "Finding common good days...";
+
+// MARK: - Day Analysis
+"day.excellent" = "Excellent day for important activities";
+"day.good" = "Good day, proceed with confidence";
+"day.neutral" = "Neutral day, routine activities only";
+"day.caution" = "Exercise caution, consider postponing";
+"day.avoid" = "Avoid major activities today";
+
+// MARK: - Recommendations
+"recommendation.excellent" = "Excellent";
+"recommendation.good" = "Good";
+"recommendation.neutral" = "Neutral";
+"recommendation.caution" = "Caution";
+"recommendation.avoid" = "Avoid";
+
+// MARK: - Pillars
+"pillar.year" = "Year";
+"pillar.month" = "Month";
+"pillar.day" = "Day";
+"pillar.hour" = "Hour";
+
+// MARK: - Five Elements
+"element.wood" = "Wood";
+"element.fire" = "Fire";
+"element.earth" = "Earth";
+"element.metal" = "Metal";
+"element.water" = "Water";
+
+// MARK: - Yin Yang
+"yinyang.yin" = "Yin";
+"yinyang.yang" = "Yang";
+
+// MARK: - Heavenly Stems
+"stem.jia" = "Jia";
+"stem.yi" = "Yi";
+"stem.bing" = "Bing";
+"stem.ding" = "Ding";
+"stem.wu" = "Wu";
+"stem.ji" = "Ji";
+"stem.geng" = "Geng";
+"stem.xin" = "Xin";
+"stem.ren" = "Ren";
+"stem.gui" = "Gui";
+
+// MARK: - Earthly Branches
+"branch.zi" = "Zi (Rat)";
+"branch.chou" = "Chou (Ox)";
+"branch.yin" = "Yin (Tiger)";
+"branch.mao" = "Mao (Rabbit)";
+"branch.chen" = "Chen (Dragon)";
+"branch.si" = "Si (Snake)";
+"branch.wu" = "Wu (Horse)";
+"branch.wei" = "Wei (Goat)";
+"branch.shen" = "Shen (Monkey)";
+"branch.you" = "You (Rooster)";
+"branch.xu" = "Xu (Dog)";
+"branch.hai" = "Hai (Pig)";
+
+// MARK: - Zodiac Animals
+"zodiac.rat" = "Rat";
+"zodiac.ox" = "Ox";
+"zodiac.tiger" = "Tiger";
+"zodiac.rabbit" = "Rabbit";
+"zodiac.dragon" = "Dragon";
+"zodiac.snake" = "Snake";
+"zodiac.horse" = "Horse";
+"zodiac.goat" = "Goat";
+"zodiac.monkey" = "Monkey";
+"zodiac.rooster" = "Rooster";
+"zodiac.dog" = "Dog";
+"zodiac.pig" = "Pig";
+
+// MARK: - Day Officers
+"officer.jian" = "Establish";
+"officer.chu" = "Remove";
+"officer.man" = "Full";
+"officer.ping" = "Balance";
+"officer.ding" = "Stable";
+"officer.zhi" = "Execute";
+"officer.po" = "Break";
+"officer.wei" = "Danger";
+"officer.cheng" = "Success";
+"officer.shou" = "Receive";
+"officer.kai" = "Open";
+"officer.bi" = "Close";
+
+// MARK: - Day Officer Meanings
+"officer.jian.meaning" = "Day of establishment. Good for starting new ventures, but avoid extreme actions.";
+"officer.chu.meaning" = "Day of removal. Good for clearing obstacles, medical treatment, ending bad habits.";
+"officer.man.meaning" = "Day of abundance. Good for celebrations, harvesting, receiving blessings.";
+"officer.ping.meaning" = "Day of balance. Neutral day, suitable for routine activities.";
+"officer.ding.meaning" = "Day of stability. Good for signing contracts, making decisions, settling matters.";
+"officer.zhi.meaning" = "Day of execution. Good for construction, capturing, taking action.";
+"officer.po.meaning" = "Day of breaking. Avoid major activities. Only suitable for demolition.";
+"officer.wei.meaning" = "Day of danger. Caution advised. Avoid risky activities.";
+"officer.cheng.meaning" = "Day of success. Excellent for negotiations, signing deals, completions.";
+"officer.shou.meaning" = "Day of receiving. Good for collecting debts, receiving guests, acquisitions.";
+"officer.kai.meaning" = "Day of opening. Excellent for grand openings, starting journeys, new beginnings.";
+"officer.bi.meaning" = "Day of closing. Good for funerals, closing deals, ending projects.";
+
+// MARK: - Lunar Stars
+"star.tianDe" = "Heavenly Virtue";
+"star.yueDe" = "Monthly Virtue";
+"star.tianDeHe" = "Heavenly Virtue Harmony";
+"star.yueDheHe" = "Monthly Virtue Harmony";
+"star.tianXi" = "Heavenly Joy";
+"star.tianYi" = "Heavenly Doctor";
+"star.luShen" = "Prosperity Star";
+"star.guiRen" = "Noble Person";
+"star.suiPo" = "Year Breaker";
+"star.yuePo" = "Month Breaker";
+"star.riPo" = "Day Breaker";
+"star.sanSha" = "Three Killings";
+"star.wuGui" = "Five Ghosts";
+"star.baiHu" = "White Tiger";
+"star.xuanWu" = "Black Tortoise";
+"star.gouChen" = "Hook Spirit";
+"star.tengShe" = "Flying Serpent";
+"star.hongLuan" = "Red Phoenix";
+"star.tianKu" = "Heavenly Weeping";
+"star.sangMen" = "Mourning Gate";
+"star.diaoKe" = "Mourning Visitor";
+
+// MARK: - Solar Terms
+"solarTerm.liChun" = "Start of Spring";
+"solarTerm.yuShui" = "Rain Water";
+"solarTerm.jingZhe" = "Awakening of Insects";
+"solarTerm.chunFen" = "Spring Equinox";
+"solarTerm.qingMing" = "Clear and Bright";
+"solarTerm.guYu" = "Grain Rain";
+"solarTerm.liXia" = "Start of Summer";
+"solarTerm.xiaoMan" = "Small Full";
+"solarTerm.mangZhong" = "Grain in Ear";
+"solarTerm.xiaZhi" = "Summer Solstice";
+"solarTerm.xiaoShu" = "Minor Heat";
+"solarTerm.daShu" = "Major Heat";
+"solarTerm.liQiu" = "Start of Autumn";
+"solarTerm.chuShu" = "End of Heat";
+"solarTerm.baiLu" = "White Dew";
+"solarTerm.qiuFen" = "Autumn Equinox";
+"solarTerm.hanLu" = "Cold Dew";
+"solarTerm.shuangJiang" = "Frost Descent";
+"solarTerm.liDong" = "Start of Winter";
+"solarTerm.xiaoXue" = "Minor Snow";
+"solarTerm.daXue" = "Major Snow";
+"solarTerm.dongZhi" = "Winter Solstice";
+"solarTerm.xiaoHan" = "Minor Cold";
+"solarTerm.daHan" = "Major Cold";
+
+// MARK: - Activities
+"activity.signContract" = "Sign Contract";
+"activity.negotiation" = "Negotiation";
+"activity.openBusiness" = "Open Business";
+"activity.launchProduct" = "Launch Product";
+"activity.investMoney" = "Investment";
+"activity.closeDeal" = "Close Deal";
+"activity.hireEmployee" = "Hire Employee";
+"activity.startPartnership" = "Start Partnership";
+"activity.marriage" = "Marriage";
+"activity.engagement" = "Engagement";
+"activity.moveHouse" = "Move House";
+"activity.startJob" = "Start New Job";
+"activity.askForRaise" = "Ask for Raise";
+"activity.importantMeeting" = "Important Meeting";
+"activity.funeral" = "Funeral";
+"activity.ancestorWorship" = "Ancestor Worship";
+"activity.groundbreaking" = "Groundbreaking";
+"activity.grandOpening" = "Grand Opening";
+"activity.startConstruction" = "Start Construction";
+"activity.renovation" = "Renovation";
+"activity.demolition" = "Demolition";
+"activity.installDoor" = "Install Door/Gate";
+"activity.longTravel" = "Long Journey";
+"activity.businessTrip" = "Business Trip";
+"activity.relocation" = "Relocation";
+"activity.surgery" = "Surgery";
+"activity.startTreatment" = "Start Treatment";
+"activity.checkup" = "Health Checkup";
+"activity.lawsuit" = "Lawsuit";
+"activity.signLegalDoc" = "Sign Legal Documents";
+"activity.courtAppearance" = "Court Appearance";
+
+// MARK: - Relationships
+"relationship.self" = "Self";
+"relationship.spouse" = "Spouse";
+"relationship.partner" = "Business Partner";
+"relationship.child" = "Child";
+"relationship.parent" = "Parent";
+"relationship.sibling" = "Sibling";
+"relationship.employee" = "Key Employee";
+"relationship.other" = "Other";
+
+// MARK: - Industries
+"industry.technology" = "Technology";
+"industry.finance" = "Finance";
+"industry.consulting" = "Consulting";
+"industry.realEstate" = "Real Estate";
+"industry.healthcare" = "Healthcare";
+"industry.legal" = "Legal";
+"industry.manufacturing" = "Manufacturing";
+"industry.retail" = "Retail";
+"industry.other" = "Other";
+
+// MARK: - Warnings
+"warning.yearBreaker" = "Year Breaker detected - Major activities should be avoided";
+"warning.monthBreaker" = "Month Breaker detected - Proceed with caution";
+"warning.dayClash" = "Day clashes with your chart - Consider alternative dates";
+
+// MARK: - Time Windows
+"time.siWu" = "10:00 AM - 2:00 PM (Si-Wu hours)";
+"time.maoChen" = "6:00 AM - 10:00 AM (Mao-Chen hours)";
+"time.weiShen" = "2:00 PM - 6:00 PM (Wei-Shen hours)";
+"time.wu" = "11:00 AM - 1:00 PM (Wu hour)";
+
+// MARK: - Common Actions
+"action.cancel" = "Cancel";
+"action.done" = "Done";
+"action.add" = "Add";
+"action.save" = "Save";
+"action.delete" = "Delete";
+"action.edit" = "Edit";
+
+// MARK: - Notifications Settings
+"notifications.types" = "Notification Types";
+"notifications.dailyBrief" = "Daily Brief";
+"notifications.auspiciousDays" = "Auspicious Day Alerts";
+"notifications.warnings" = "Warning Alerts";
+"notifications.footer" = "Enable notifications to receive daily insights and important date alerts.";
+
+// MARK: - Privacy Settings
+"privacy.dataCollection" = "Data Collection";
+"privacy.analytics" = "Analytics";
+"privacy.crashReports" = "Crash Reports";
+"privacy.localStorageNotice" = "Your birth data and personal information are stored locally on your device and never uploaded to our servers.";
+"privacy.privacyPolicy" = "Privacy Policy";
+"privacy.termsOfService" = "Terms of Service";
+"privacy.deleteAllData" = "Delete All Data";
+"privacy.deleteWarning" = "This will permanently delete all your data including your profile and saved preferences.";
+"privacy.deleteConfirmTitle" = "Delete All Data?";
+"privacy.deleteConfirm" = "Delete Everything";
+"privacy.deleteConfirmMessage" = "This action cannot be undone. All your profile data, preferences, and cached analyses will be permanently removed.";
+"privacy.lastUpdated" = "Last updated: February 2026";
+
+// MARK: - Privacy Policy Sections
+"privacy.section.overview" = "Overview";
+"privacy.section.overviewContent" = "Oraculum (\"the App\") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile application.";
+"privacy.section.dataCollection" = "Information We Collect";
+"privacy.section.dataCollectionContent" = "We collect information you provide directly, including your name, birth date, birth time, and birth location. This information is essential for calculating your personal Ba Zi chart and providing personalized date selection recommendations.";
+"privacy.section.localStorage" = "Local Data Storage";
+"privacy.section.localStorageContent" = "All personal data, including your birth information and calculated Ba Zi chart, is stored exclusively on your device using secure local storage. We do not transmit, upload, or store your personal information on any external servers.";
+"privacy.section.analytics" = "Analytics";
+"privacy.section.analyticsContent" = "If you opt-in to analytics, we collect anonymized usage data such as feature usage patterns and app performance metrics. This data cannot be used to identify you personally and is used solely to improve the app experience.";
+"privacy.section.thirdParties" = "Third-Party Services";
+"privacy.section.thirdPartiesContent" = "We do not share, sell, or transfer any of your personal information to third parties. The App operates independently without third-party analytics or advertising services.";
+"privacy.section.dataRetention" = "Data Retention";
+"privacy.section.dataRetentionContent" = "Your data is retained on your device until you choose to delete it. You can delete all your data at any time through the Privacy settings in the App.";
+"privacy.section.yourRights" = "Your Rights";
+"privacy.section.yourRightsContent" = "You have the right to access, modify, or delete your personal information at any time. You can update your profile information or delete all data through the App settings.";
+"privacy.section.contact" = "Contact Us";
+"privacy.section.contactContent" = "If you have questions about this Privacy Policy, please contact us at martinycleung@gmail.com";
+
+// MARK: - Terms of Service
+"terms.acceptance" = "Acceptance of Terms";
+"terms.acceptanceContent" = "By downloading, installing, or using Oraculum, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the App.";
+"terms.disclaimer" = "Nature of Service";
+"terms.disclaimerContent" = "Oraculum provides date selection guidance based on traditional Chinese metaphysics principles, specifically Ba Zi (Four Pillars of Destiny) and related methodologies. The App uses astronomical calculations and established metaphysical algorithms to generate recommendations.";
+"terms.professionalAdvice" = "Not Professional Advice";
+"terms.professionalAdviceContent" = "The information provided by Oraculum is for informational and entertainment purposes only. It should not be considered as professional financial, legal, medical, or any other type of professional advice. Always consult qualified professionals for important decisions.";
+"terms.riskWarning" = "Use at Your Own Risk";
+"terms.riskWarningContent" = "Any decisions you make based on the information provided by this App are your own responsibility. We do not guarantee specific outcomes and are not liable for any results or consequences arising from your use of the App's recommendations.";
+"terms.intellectualProperty" = "Intellectual Property";
+"terms.intellectualPropertyContent" = "All content, features, algorithms, and functionality of Oraculum are owned by the developers and protected by copyright, trademark, and other intellectual property laws. You may not copy, modify, distribute, or create derivative works without written permission.";
+"terms.limitationOfLiability" = "Limitation of Liability";
+"terms.limitationOfLiabilityContent" = "To the maximum extent permitted by law, Oraculum and its developers shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the App.";
+"terms.governingLaw" = "Governing Law";
+"terms.governingLawContent" = "These Terms shall be governed by and construed in accordance with the laws of Hong Kong SAR, without regard to its conflict of law provisions.";
+
+// MARK: - About Page
+"about.technology" = "Technology";
+"about.algorithm.title" = "High-Precision Ba Zi Algorithm";
+"about.algorithm.description" = "Oraculum uses astronomically-precise calculations based on VSOP87 theory for solar longitude, Julian Day Number for day pillar calculations, and True Solar Time correction for accurate birth chart computation. Our utility-based scoring engine evaluates dates based on your specific intent, not just general luck.";
+"about.coreFeatures" = "Core Features";
+"about.feature.bazi" = "Ba Zi Chart Analysis";
+"about.feature.baziDesc" = "Complete Four Pillars calculation with astronomical precision";
+"about.feature.dateSelection" = "Strategic Date Selection";
+"about.feature.dateSelectionDesc" = "Intent-aware scoring for 30+ activity types";
+"about.feature.groupSelection" = "Group Selection";
+"about.feature.groupSelectionDesc" = "Find optimal dates for multiple participants";
+"about.feature.usefulGod" = "Useful God Integration";
+"about.feature.usefulGodDesc" = "Personalized scoring based on your elemental needs";
+"about.methodology" = "Methodology";
+"about.methodology.description" = "Our algorithms are based on classical Ba Zi principles including the Twelve Day Officers (建除十二神), Lunar Stars analysis, Six Clashes and Penalties, Five Tigers and Five Rats methods, and Useful God (喜用神) theory. All calculations prioritize astronomical accuracy over simplified lookup tables.";
+"about.website" = "Website";
+"about.contactSupport" = "Contact Support";
+"about.madeIn" = "Made with precision in Hong Kong";
+
+// MARK: - Advanced Scoring Messages
+"score.yearBreakerConstructive" = "Annual energies conflict with constructive activities. Contracts signed today carry hidden risks.";
+"score.yearBreakerDestructive" = "Strong clash energy facilitates removal and clearing procedures.";
+"score.personalClashCritical" = "CRITICAL: Personal Clash detected. High risk of injury or conflict. Avoid travel and high-risk activities.";
+"score.officerCompromised" = "Day Officer energy is unstable due to Annual Clash.";
+"score.elementClash" = "Today's energy suppresses your needed element.";
+
+// MARK: - Score Titles
+"score.title.personalClash" = "Personal Safety Alert";
+"score.title.unstableFoundation" = "Unstable Foundation";
+"score.title.viableRemoval" = "Viable for Removal";
+"score.title.deceptiveOpen" = "Deceptive Open";
+"score.title.optimalWindow" = "Optimal Window";
+"score.title.favorableConditions" = "Favorable Conditions";
+"score.title.neutralEnergy" = "Neutral Energy";
+"score.title.exerciseCaution" = "Exercise Caution";
+"score.title.strategicPause" = "Strategic Pause";
+
+// MARK: - Score Insights
+"score.insight.personalClash" = "The day's energy directly conflicts with your personal chart. This is the most dangerous configuration for personal safety. Do not engage in travel, negotiations, or any high-risk activities.";
+"score.insight.yearBreakerConstructive" = "Annual energies are in direct conflict today. Constructive activities like signing contracts, starting businesses, or major commitments carry elevated risk of voidance or reversal. Recalculating next optimal window...";
+"score.insight.yearBreakerDestructive" = "While generally turbulent, today's clash energy is advantageous for removal, demolition, or ending procedures. The breaking energy facilitates extraction and clearing.";
+"score.insight.compromisedOfficer" = "The general energy appears open, but underlying conflicts destabilize the foundation. What seems like opportunity may leak energy or reverse unexpectedly.";
+"score.insight.excellent" = "Exceptional alignment between cosmic and personal energies. This is an optimal window for your intended activity. Proceed with confidence.";
+"score.insight.good" = "Favorable conditions with minor considerations. The day supports your intentions with good energy flow.";
+"score.insight.neutral" = "Balanced energy without strong support or opposition. Suitable for routine activities but avoid major commitments.";
+"score.insight.caution" = "Mixed signals require careful consideration. If this activity cannot wait, take extra precautions and have contingency plans.";
+"score.insight.avoid" = "Multiple factors advise against major activities today. The energy configuration does not support your intentions. Consider alternative dates.";
