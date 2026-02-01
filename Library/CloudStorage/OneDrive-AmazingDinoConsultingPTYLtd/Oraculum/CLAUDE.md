@@ -288,6 +288,8 @@ xcrun devicectl device install app \
 - `DayOfficerCalculatorTests` - Day officer calculations
 - `ScoringSystemTests` - Scoring algorithm verification
 - `MLValidationEngineTests` - ML feature extraction and predictions (16 tests)
+- `FourPillarsRecalculationTests` - Validates that ALL four pillars and 地支 recalculate when date changes (7 tests)
+- `DateChangeRecalculationTests` - Tests day pillar 60 Jia-Zi cycle and score consistency (18 tests)
 
 ### Key Test Cases
 - Year Breaker penalty for constructive activities
@@ -295,14 +297,26 @@ xcrun devicectl device install app \
 - Personal Clash (Fan Yin) instant fail
 - Heavenly Virtue nullification of negative stars
 - Score bounds (0-100)
+- **BaZi Recalculation Validation:**
+  - Year change affects Year Pillar AND Month Stem (Five Tiger Method)
+  - Month change affects Month Pillar (Solar Term based)
+  - Day change affects Day Pillar AND Hour Stem (Five Rat Method)
+  - Hour change affects Hour Pillar
+  - All 12 地支 (Earthly Branches) appear across time ranges
+  - Same date produces identical charts (consistency)
+  - True Solar Time properly applied with timezone considerations
 
 ## UI Components
 
 ### Main Views
 - **BoardroomView** - Today's dashboard with overall score and recommendations
+  - Reloads when user's birth date changes (triggers BaZi recalculation)
 - **StrategicCalendarView** - Heatmap calendar with date selection
+  - Clears cache and reloads when user's birth date changes
 - **ProfileView** - User Ba Zi chart display and settings
 - **ProfileEditView** - Edit user profile information
+  - **Live BaZi Preview** - Shows all four pillars updating in real-time as user changes date/time
+  - Recalculates chart on birthDate and birthTimezone changes
 - **DayDetailView** - Detailed analysis for selected date with professional insights
 
 ### Professional Insights Display (v1.3)
@@ -402,7 +416,7 @@ private func localizedWarning(_ warning: String) -> String {
 - **NEW:** BoardroomViewModel uses personalized insights for recommendations
 - **NEW:** Warning localization supports both "warning." and "score." prefixes
 - **NEW:** LLM infrastructure prepared (iOS 18+ ready)
-- **NEW:** 110 unit tests passing
+- **NEW:** 135 unit tests passing (including BaZi recalculation validation)
 
 ### v1.2 (ML Validation Engine)
 - ML Validation Engine with CoreML support
