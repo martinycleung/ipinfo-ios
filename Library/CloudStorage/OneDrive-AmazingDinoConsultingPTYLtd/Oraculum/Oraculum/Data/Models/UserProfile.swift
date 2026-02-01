@@ -10,19 +10,7 @@ import SwiftData
 import CoreLocation
 import OraculumCore
 
-/// Gender for BaZi calculations (affects Luck Pillar direction)
-public enum Gender: String, CaseIterable, Sendable, Codable {
-    case male = "Male"
-    case female = "Female"
-
-    /// Localization key
-    public var localizationKey: String {
-        switch self {
-        case .male: return "gender.male"
-        case .female: return "gender.female"
-        }
-    }
-}
+// Note: Gender enum is now in OraculumCore (LuckPillarCalculator.swift)
 
 /// Relationship type for family members
 public enum Relationship: String, CaseIterable, Sendable, Codable {
@@ -42,7 +30,7 @@ public final class UserProfile {
     @Attribute(.unique) public var id: UUID
     public var name: String
     public var relationship: String  // Stored as String for SwiftData compatibility
-    public var gender: String  // Stored as String for SwiftData compatibility (Male/Female)
+    public var gender: String = "Male"  // Stored as String for SwiftData compatibility (Male/Female), default for migration
 
     // Birth Data
     public var birthDate: Date

@@ -16,7 +16,7 @@ public final class FamilyMember {
     @Attribute(.unique) public var id: UUID
     public var name: String
     public var relationship: String
-    public var gender: String  // Stored as String for SwiftData compatibility (Male/Female)
+    public var gender: String = "Male"  // Stored as String for SwiftData compatibility (Male/Female), default for migration
 
     // Birth Data
     public var birthDate: Date
